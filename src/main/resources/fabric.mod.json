@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "carpet-las-addition",
+  "version": "${version}",
+  "name": "Carpet-LAS-Addition",
+  "description": "",
+  "authors": [],
+  "contact": {
+    "repo": "https://github.com/Fanzhitianyu/Carpet-LAS-Addition"
+  },
+  "license": "MIT",
+  "icon": "assets/carpet-las-addition/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "lazyalienserver.carpetlasaddition.CarpetLASServer"
+    ]
+  },
+  "mixins": [
+    "Carpet-LAS-Addition.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}",
+    "carpet": ">=1.4.64"
+  }
+}
