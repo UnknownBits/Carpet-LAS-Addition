@@ -4,7 +4,7 @@
   "version": "${version}",
   "name": "Carpet-LAS-Addition",
   "description": "",
-  "authors": [],
+  "authors": ["Fanzhitianyu","ABxl_lly"],
   "contact": {
     "repo": "https://github.com/Fanzhitianyu/Carpet-LAS-Addition"
   },

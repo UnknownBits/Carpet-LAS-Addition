@@ -1,0 +1,5 @@
+{
+  "carpet.category.testaddition": "TestAddition",
+
+  "carpet.rule.FixedenderPearlChunkLoading.desc": "Allow horizontally moving Ender Pearls to load chunks as entity ticking."
+}
