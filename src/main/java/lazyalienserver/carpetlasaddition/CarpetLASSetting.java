@@ -4,6 +4,6 @@ import carpet.settings.Rule;
 
 public class CarpetLASSetting {
     public static final String LASAddition="LAS";
-    @Rule(desc = "FixedenderPearlChunkLoading", category = {LASAddition})
-    public static boolean FixedenderPearlChunkLoading = false;
+    @Rule(desc = "EnderPearlChunkLoading", category = {LASAddition})
+    public static boolean enderPearlChunkLoading = false;
 }

@@ -1,6 +1,6 @@
 {
   "carpet.category.LASAddition": "LASAddition",
 
-  "carpet.rule.FixedenderPearlChunkLoading.name": "末影珍珠区块加载",
-  "carpet.rule.FixedenderPearlChunkLoading.desc": "让水平移动的末影珍珠可以强加载区块"
+  "carpet.rule.EnderPearlChunkLoading.name": "末影珍珠区块加载",
+  "carpet.rule.EnderPearlChunkLoading.desc": "让水平移动的末影珍珠可以强加载区块"
 }

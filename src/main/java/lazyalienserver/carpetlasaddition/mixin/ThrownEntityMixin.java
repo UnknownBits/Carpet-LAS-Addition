@@ -23,7 +23,7 @@ public abstract class ThrownEntityMixin extends Entity
     @Inject(at = @At("HEAD"),method ="tick()V")
     private void chunkLoadNextChunk(CallbackInfo ci)
     {
-        if (CarpetLASSetting.FixedenderPearlChunkLoading &&
+        if (CarpetLASSetting.enderPearlChunkLoading &&
                 ((Object) this) instanceof EnderPearlEntity)
         {
             ChunkUtils.addEnderPearlChunkTicket(this);
