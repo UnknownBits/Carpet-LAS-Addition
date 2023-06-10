@@ -23,6 +23,7 @@ public abstract class PillagerEntityMixin extends Entity {
     @Inject(at = @At("HEAD"),method = "readFromPacket")
     private void readFromPacket(CallbackInfo ci){
         Logger.getGlobal().setLevel(Level.ALL);
+        spawnTime=world.getTime();
         Logger.getLogger("PillagerMixin.spawn").info(Objects.toString(world.getTime()));
         Logger.getGlobal().setLevel(Level.OFF);
     }
@@ -30,7 +31,7 @@ public abstract class PillagerEntityMixin extends Entity {
     private void onDeath(CallbackInfo ci){
         Logger.getGlobal().setLevel(Level.ALL);
         Logger.getLogger("PillagerMixin.dead").info(Objects.toString(world.getTime()));
-        Logger.getLogger("PillagerMixin.period").info(Objects.toString(spawnTime));
+        Logger.getLogger("PillagerMixin.period").info(Objects.toString((world.getTime()-spawnTime)));
         Logger.getGlobal().setLevel(Level.OFF);
     }
 }
