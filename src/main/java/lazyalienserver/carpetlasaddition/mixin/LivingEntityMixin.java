@@ -34,7 +34,7 @@ public abstract class LivingEntityMixin extends Entity {
     private void readFromPacket(CallbackInfo ci){
         if(CarpetLASSetting.PillagerAliveTime&&this.getType()==EntityType.PILLAGER) {
             spawnTime = world.getTime();
-            Log.log(LogLevel.INFO, LogCategory.LOG,"PillagerMixin.spawn");
+            Log.log(LogLevel.INFO, LogCategory.LOG,"LivingEntity.spawn");
         }
     }
     @Inject(at = @At("HEAD"),method = "onDeath")
