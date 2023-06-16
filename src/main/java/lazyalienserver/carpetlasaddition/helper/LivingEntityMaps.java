@@ -2,25 +2,26 @@ package lazyalienserver.carpetlasaddition.helper;
 
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-
 import java.util.HashMap;
+import java.util.UUID;
 
 
 public class LivingEntityMaps {
 
-    private static HashMap<EntityType<? extends LivingEntity>,Long> StartTime=new HashMap<>();
-    private static HashMap<EntityType<? extends LivingEntity>,Long> AverageAliveTime=new HashMap<>();
-    public static void putStartTime(EntityType<? extends LivingEntity> Type,Long Time)
+    private HashMap<UUID,Long> StartTime=new HashMap<>();
+    private HashMap<EntityType<? extends LivingEntity>,Long> AverageAliveTime=new HashMap<>();
+    public void putStartTime(UUID uuid,Long startTime)
     {
-        StartTime.put(Type,Time);
+        StartTime.put(uuid,startTime);
     }
-    public static void putDeadTime(EntityType<? extends LivingEntity> Type,Long DeadTime)
+    public void resetEntityAliveTime(EntityType<? extends LivingEntity> entityType,UUID uuid,Long DeathTime)
     {
-        AverageAliveTime.put(Type,(DeadTime-StartTime.get(Type)));
+        AverageAliveTime.put(entityType,Average((DeathTime-StartTime.get(uuid)),AverageAliveTime.get(entityType)));
     }
-    public static Long getAverageAliveTime(EntityType<? extends LivingEntity> Type){
-
-        return AverageAliveTime.get(Type);
+    private static Long Average(Long... longs)
+    {
+        //迭代法求平均值
+        return null;
     }
 
 }
