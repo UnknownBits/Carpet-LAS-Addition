@@ -3,6 +3,7 @@ package lazyalienserver.carpetlasaddition.utils;
 import net.minecraft.entity.Entity;
 import net.minecraft.server.world.ChunkTicketType;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
@@ -13,6 +14,7 @@ import java.util.Comparator;
 
 public class ChunkUtils {
     public static final ChunkTicketType<ChunkPos> ENDER_PEARL_TICKET=ChunkTicketType.create("endeer_pearl", Comparator.comparingLong(ChunkPos::toLong),2);
+    public static final ChunkTicketType<ChunkPos> NoteBlockChunkTicket=ChunkTicketType.create("NoteBlock", Comparator.comparingLong(ChunkPos::toLong),4);
     public static void addEnderPearlChunkTicket(Entity entity)
     {
         World world = entity.getEntityWorld();
@@ -26,6 +28,15 @@ public class ChunkUtils {
             double nz = pos.z + velocity.z;
             ChunkPos cp = new ChunkPos(MathHelper.floor(nx) >> 4, MathHelper.floor(nz) >> 4);
             ((ServerWorld) world).getChunkManager().addTicket(ENDER_PEARL_TICKET, cp, 2, cp);
+        }
+    }
+
+    public static void addNoteBlockChunkTicket(World world,BlockPos pos){
+        if(world instanceof ServerWorld){
+            int x= pos.getX();
+            int z= pos.getZ();
+            ChunkPos cp=new ChunkPos(x>>4,z>>4);
+            ((ServerWorld)world).getChunkManager().addTicket(NoteBlockChunkTicket,cp,3,cp);
         }
     }
 }

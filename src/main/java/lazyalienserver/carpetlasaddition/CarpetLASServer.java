@@ -3,8 +3,6 @@ package lazyalienserver.carpetlasaddition;
 import carpet.CarpetExtension;
 import carpet.CarpetServer;
 import com.mojang.brigadier.CommandDispatcher;
-import lazyalienserver.carpetlasaddition.commands.AliveTimeCommand;
-import lazyalienserver.carpetlasaddition.helper.LivingEntityMapsManager;
 import lazyalienserver.carpetlasaddition.utils.CarpetLASAdditionTranslations;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
@@ -26,7 +24,6 @@ public class CarpetLASServer implements CarpetExtension, ModInitializer {
     @Override
     public void onInitialize() {
         CarpetLASServer.loadExtension();
-        CommandRegistrationCallback.EVENT.register(((dispatcher, dedicated) -> AliveTimeCommand.commandregister(dispatcher)));
     }
     @Override
     public void onGameStarted(){
