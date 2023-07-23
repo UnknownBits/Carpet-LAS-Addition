@@ -3,7 +3,6 @@ package lazyalienserver.carpetlasaddition.utils;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import lazyalienserver.carpetlasaddition.CarpetLASServer;
 import org.apache.commons.io.IOUtils;
 
 import java.io.IOException;
@@ -17,7 +16,7 @@ public class CarpetLASAdditionTranslations {
         String dataJSON;
         try
         {
-            dataJSON = IOUtils.toString(Objects.requireNonNull(CarpetLASAdditionTranslations.class.getClassLoader().getResourceAsStream(String.format("assets/carpet-extra/lang/%s.json", lang))), StandardCharsets.UTF_8);
+            dataJSON = IOUtils.toString(Objects.requireNonNull(CarpetLASAdditionTranslations.class.getClassLoader().getResourceAsStream(String.format("assets/carpet-las-addition/lang/%s.json", lang))), StandardCharsets.UTF_8);
         }
         catch (IOException | NullPointerException e)
         {

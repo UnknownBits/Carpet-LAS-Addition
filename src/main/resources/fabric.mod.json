@@ -27,5 +27,6 @@
     "fabric": "*",
     "minecraft": "${minecraft_version}",
     "carpet": ">=1.4.64"
-  }
+  },
+  "accessWidener": "carpet-las-addition.accesswidener"
 }

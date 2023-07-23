@@ -14,7 +14,7 @@ import java.util.Comparator;
 
 public class ChunkUtils {
     public static final ChunkTicketType<ChunkPos> ENDER_PEARL_TICKET=ChunkTicketType.create("endeer_pearl", Comparator.comparingLong(ChunkPos::toLong),2);
-    public static final ChunkTicketType<ChunkPos> NoteBlockChunkTicket=ChunkTicketType.create("NoteBlock", Comparator.comparingLong(ChunkPos::toLong),4);
+    public static final ChunkTicketType<ChunkPos> NoteBlockChunkTicket=ChunkTicketType.create("NoteBlock", Comparator.comparingLong(ChunkPos::toLong),600);
     public static void addEnderPearlChunkTicket(Entity entity)
     {
         World world = entity.getEntityWorld();

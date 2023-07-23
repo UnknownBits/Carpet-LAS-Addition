@@ -30,7 +30,6 @@ public class NoteBlockMixin {
     public void neighborUpdate(BlockState state, World world, BlockPos pos, Block block, BlockPos fromPos, boolean notify, CallbackInfo ci){
         if(CarpetLASSetting.NC_noteBlockLoadChunk &&world.isReceivingRedstonePower(pos)&&state.get(NOTE)==24){
             ChunkUtils.addNoteBlockChunkTicket(world,pos);
-            System.out.println("Need chunkLoad");
         }
         /*if(CarpetLASSetting.noteBlockLoadChunk && !state.get(POWERED)){
             System.out.println("Need chunkUnLoad");
