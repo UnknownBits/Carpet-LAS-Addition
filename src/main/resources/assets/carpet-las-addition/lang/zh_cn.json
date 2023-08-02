@@ -11,5 +11,5 @@
   "rule.CompostGradeModification.desc": "任何放入堆肥桶的物品都将使堆肥桶增加一级[每次更改设置后需要右键一次堆肥桶才能应用当前设置]",
 
   "rule.MinecartDropModify.name": "矿车掉落机制修改",
-  "rule.MinecartDropModify.desc": "将1.18.2版本的矿车掉落机制替换成1.19版本的掉落机制"
+  "rule.MinecartDropModify.desc": "将1.18.2版本的矿车掉落机制替换成1.19版本的矿车掉落机制"
 }
