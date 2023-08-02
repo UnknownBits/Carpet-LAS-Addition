@@ -24,14 +24,5 @@ public class NoteBlockMixin {
         if(CarpetLASSetting.NC_noteBlockLoadChunk &&world.isReceivingRedstonePower(pos)&&state.get(NOTE)==24){
             ChunkUtils.addNCNoteBlockChunkTicket(world,pos);
         }
-        if(CarpetLASSetting.NoteBlockLoadChunk &&!world.isReceivingRedstonePower(pos)&&state.get(NOTE)==24){
-            ChunkUtils.RemoveNoteBlockChunkLoad(world, pos);
-        }
-    }
-    @Inject(at=@At("HEAD"),method = "playNote")
-    public void playNote(World world, BlockPos pos, CallbackInfo ci){
-        if(CarpetLASSetting.NoteBlockLoadChunk &&world.isReceivingRedstonePower(pos)&&world.getBlockState(pos).get(NOTE)==24){
-            ChunkUtils.addNoteBlockChunkLoad(world,pos);
-        }
     }
 }

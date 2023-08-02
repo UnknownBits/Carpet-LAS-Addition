@@ -11,12 +11,10 @@ import net.minecraft.world.World;
 
 
 import java.util.*;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 public class ChunkUtils {
     public static final ChunkTicketType<ChunkPos> ENDER_PEARL_TICKET=ChunkTicketType.create("endeer_pearl", Comparator.comparingLong(ChunkPos::toLong),2);
     public static final ChunkTicketType<ChunkPos> NoteBlockChunkTicket=ChunkTicketType.create("NoteBlock", Comparator.comparingLong(ChunkPos::toLong),300);
-    public static final CopyOnWriteArrayList<ChunkPos> NoteChunkLoadList=new CopyOnWriteArrayList<>();
     public static void addEnderPearlChunkTicket(Entity entity)
     {
         World world = entity.getEntityWorld();
@@ -32,35 +30,12 @@ public class ChunkUtils {
             ((ServerWorld) world).getChunkManager().addTicket(ENDER_PEARL_TICKET, cp, 2, cp);
         }
     }
-
     public static void addNCNoteBlockChunkTicket(World world, BlockPos pos){
         if(world instanceof ServerWorld){
             ChunkPos cp=ChunkUtils.BlockPOStoChunkPOS(pos);
             ((ServerWorld)world).getChunkManager().addTicket(NoteBlockChunkTicket,cp,3,cp);
         }
     }
-
-    public static void addNoteBlockChunkLoad(World world, BlockPos pos){
-        if(world instanceof ServerWorld){
-            ChunkPos chunkPos=ChunkUtils.BlockPOStoChunkPOS(pos);
-            world.getChunkManager().setChunkForced(chunkPos,true);
-            NoteChunkLoadList.add(chunkPos);
-        }
-    }
-    public static void RemoveNoteBlockChunkLoad(World world,BlockPos pos){
-        if (world instanceof ServerWorld){
-            ChunkPos chunkPos=ChunkUtils.BlockPOStoChunkPOS(pos);
-            world.getChunkManager().setChunkForced(chunkPos,false);
-            NoteChunkLoadList.remove(chunkPos);
-        }
-    }
-    public static void RemoveAllNoteBlockChunkLoad(ServerWorld world){
-            for (ChunkPos chunkPos:NoteChunkLoadList){
-                world.getChunkManager().setChunkForced(chunkPos,false);
-                NoteChunkLoadList.remove(chunkPos);
-            }
-    }
-
     private static ChunkPos BlockPOStoChunkPOS(BlockPos blockPos){
         return new ChunkPos(blockPos.getX()>>4,blockPos.getZ()>>4);
     }
