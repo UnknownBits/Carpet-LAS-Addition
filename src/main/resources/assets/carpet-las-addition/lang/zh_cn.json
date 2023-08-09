@@ -4,8 +4,8 @@
   "rule.enderPearlChunkLoading.name": "末影珍珠区块加载",
   "rule.enderPearlChunkLoading.desc": "让水平移动的末影珍珠可以强加载区块",
 
-  "rule.NC_noteBlockLoadChunk.name": "NC更新音符盒加载",
-  "rule.NC_noteBlockLoadChunk.desc": "NC更新24模式的被充能音符盒加载300gt区块[强:3*3,弱:5*5,边界7*7]",
+  "rule.NoteBlockLoadChunk.name": "音符盒加载",
+  "rule.NoteBlockLoadChunk.desc": "充能上方有种着兰花花盆的24档音符盒加载300gt区块[强:3*3,弱:5*5,边界7*7]",
 
   "rule.CompostGradeModification.name":"堆肥等级修改",
   "rule.CompostGradeModification.desc": "任何放入堆肥桶的物品都将使堆肥桶增加一级[每次更改设置后需要右键一次堆肥桶才能应用当前设置]",
