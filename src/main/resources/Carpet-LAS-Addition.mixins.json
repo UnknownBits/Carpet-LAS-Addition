@@ -13,6 +13,7 @@
     "FurnaceMinecartEntityMixin",
     "HopperMinecartEntityMixin",
     "NoteBlockMixin",
-    "ThrownEntityMixin"
+    "ThrownEntityMixin",
+    "WorldRendererMixin"
   ]
 }
