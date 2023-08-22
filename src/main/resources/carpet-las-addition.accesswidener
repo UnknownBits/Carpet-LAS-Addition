@@ -1,2 +1,3 @@
 accessWidener	v1	named
 accessible method net/minecraft/block/ComposterBlock registerCompostableItem (FLnet/minecraft/item/ItemConvertible;)V
+accessible field net/minecraft/block/entity/HopperBlockEntity transferCooldown I

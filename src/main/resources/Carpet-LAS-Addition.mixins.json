@@ -11,9 +11,12 @@
     "ChestMinecartEntityMixin",
     "ComposterBlockMixin",
     "FurnaceMinecartEntityMixin",
+    "HopperBlockEntityMixin",
     "HopperMinecartEntityMixin",
     "NoteBlockMixin",
-    "ThrownEntityMixin",
+    "ThrownEntityMixin"
+  ],
+  "client": [
     "WorldRendererMixin"
   ]
 }

@@ -3,6 +3,7 @@ package lazyalienserver.carpetlasaddition;
 import carpet.CarpetExtension;
 import carpet.CarpetServer;
 import com.mojang.brigadier.CommandDispatcher;
+import lazyalienserver.carpetlasaddition.logging.LoggerRegistry;
 import lazyalienserver.carpetlasaddition.utils.CarpetLASAdditionTranslations;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.server.command.ServerCommandSource;
@@ -11,7 +12,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.Map;
 
-public class CarpetLASServer implements CarpetExtension, ModInitializer {
+public class CarpetLASServer implements ModInitializer,CarpetExtension {
     @Override
     public String version(){
         return "1.1.0";
@@ -28,6 +29,12 @@ public class CarpetLASServer implements CarpetExtension, ModInitializer {
     public void onInitialize() {
         CarpetLASServer.loadExtension();
     }
+
+    @Override
+    public void registerLoggers(){
+        LoggerRegistry.registerLoggers();
+    }
+
     @Override
     public void onGameStarted(){
         CarpetServer.settingsManager.parseSettingsClass(CarpetLASSetting.class);
