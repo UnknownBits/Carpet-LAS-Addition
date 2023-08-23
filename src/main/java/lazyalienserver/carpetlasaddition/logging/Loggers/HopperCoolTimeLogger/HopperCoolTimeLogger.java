@@ -29,9 +29,9 @@ public class HopperCoolTimeLogger{
                     return;
                 }
                 if (entry.getValue() > 0) {
-                    BaseRender.drawString(matrices,entry.getValue().toString(), pos.getX() + 0.5F, pos.getY() + 0.5F, pos.getZ() + 0.5F, Formatting.RED.getColorValue());
+                    BaseRender.drawString(matrices,entry.getValue().toString(), pos, Formatting.RED.getColorValue());
                 } else {
-                    BaseRender.drawString(matrices,entry.getValue().toString(), pos.getX() + 0.5F, pos.getY() + 0.5F, pos.getZ() + 0.5F, Formatting.GREEN.getColorValue());
+                    BaseRender.drawString(matrices,entry.getValue().toString(), pos, Formatting.GREEN.getColorValue());
                 }
             }
         }
