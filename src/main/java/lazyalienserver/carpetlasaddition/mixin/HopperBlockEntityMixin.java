@@ -1,6 +1,10 @@
 package lazyalienserver.carpetlasaddition.mixin;
 
+import carpet.CarpetServer;
+import carpet.CarpetSettings;
+import carpet.logging.Logger;
 import lazyalienserver.carpetlasaddition.logging.Loggers.HopperCoolTimeLogger.HopperCoolTimeLogger;
+import lazyalienserver.carpetlasaddition.network.ServerNetworkHandler;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.HopperBlockEntity;
 import net.minecraft.util.math.BlockPos;
@@ -9,8 +13,6 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-
-//import static lazyalienserver.carpetlasaddition.logging.Loggers.HopperCoolTimeLogger.HopperCoolTimeLogger.hopperBlockCoolTime;
 
 @Mixin(HopperBlockEntity.class)
 public class HopperBlockEntityMixin {

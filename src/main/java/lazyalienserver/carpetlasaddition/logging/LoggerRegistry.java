@@ -2,13 +2,10 @@ package lazyalienserver.carpetlasaddition.logging;
 
 import carpet.logging.Logger;
 import lazyalienserver.carpetlasaddition.CarpetLASServer;
-import net.fabricmc.loader.impl.util.log.Log;
-import net.fabricmc.loader.impl.util.log.LogCategory;
-import net.fabricmc.loader.impl.util.log.LogLevel;
 import org.jetbrains.annotations.Nullable;
 
 public class LoggerRegistry {
-    public static boolean __hoppercooltime;
+    public static boolean __hopperCoolTime =false;
     public static void registerLoggers(){
         LoggerRegister(createCarpetLogger("hopperCoolTime",null,null));
     }

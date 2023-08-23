@@ -51,6 +51,6 @@ public class HopperCoolTimeLogger{
     }
 
     public static boolean isLoggerHopperCoolTime(){
-        return LoggerRegistry.__hoppercooltime;
+        return LoggerRegistry.__hopperCoolTime;
     }
 }
