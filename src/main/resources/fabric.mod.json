@@ -23,10 +23,10 @@
     "Carpet-LAS-Addition.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=${loader_version}",
+    "fabricloader": ">=0.14.21",
     "fabric": "*",
-    "minecraft": "${minecraft_version}",
-    "carpet": ">=1.4.64"
+    "minecraft": ">=${minecraft_version}",
+    "carpet": ">=1.4.112"
   },
   "accessWidener": "carpet-las-addition.accesswidener"
 }
