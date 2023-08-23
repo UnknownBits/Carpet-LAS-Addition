@@ -5,7 +5,7 @@ import lazyalienserver.carpetlasaddition.CarpetLASServer;
 import org.jetbrains.annotations.Nullable;
 
 public class LoggerRegistry {
-    public static boolean __hopperCoolTime =false;
+    public static boolean __hopperCoolTime;
     public static void registerLoggers(){
         LoggerRegister(createCarpetLogger("hopperCoolTime",null,null));
     }
