@@ -4,6 +4,7 @@ import lazyalienserver.carpetlasaddition.logging.LoggerRegistry;
 import lazyalienserver.carpetlasaddition.render.BaseRender;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.math.BlockPos;
 
@@ -13,7 +14,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class HopperCoolTimeLogger{
     private static final Map<BlockPos, Integer> hopperBlockCoolTime = new ConcurrentHashMap<>();
 
-    public static void RenderHopperCoolTime() {
+    public static void RenderHopperCoolTime(MatrixStack matrices) {
         if(isLoggerHopperCoolTime()) {
             BlockPos pos;
             checkState();
@@ -28,9 +29,9 @@ public class HopperCoolTimeLogger{
                     return;
                 }
                 if (entry.getValue() > 0) {
-                    BaseRender.drawString(entry.getValue().toString(), pos.getX() + 0.5F, pos.getY() + 0.5F, pos.getZ() + 0.5F, Formatting.RED.getColorValue());
+                    BaseRender.drawString(matrices,entry.getValue().toString(), pos.getX() + 0.5F, pos.getY() + 0.5F, pos.getZ() + 0.5F, Formatting.RED.getColorValue());
                 } else {
-                    BaseRender.drawString(entry.getValue().toString(), pos.getX() + 0.5F, pos.getY() + 0.5F, pos.getZ() + 0.5F, Formatting.GREEN.getColorValue());
+                    BaseRender.drawString(matrices,entry.getValue().toString(), pos.getX() + 0.5F, pos.getY() + 0.5F, pos.getZ() + 0.5F, Formatting.GREEN.getColorValue());
                 }
             }
         }

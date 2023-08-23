@@ -3,6 +3,7 @@ package lazyalienserver.carpetlasaddition.mixin;
 import lazyalienserver.carpetlasaddition.CarpetLASSetting;
 import lazyalienserver.carpetlasaddition.utils.ChunkUtils;
 import net.minecraft.block.*;
+import net.minecraft.entity.Entity;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -18,7 +19,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class NoteBlockMixin {
     @Shadow @Final public static IntProperty NOTE;
     @Inject(at=@At("RETURN"),method = "playNote")
-    public void neighborUpdate(World world, BlockPos pos, CallbackInfo ci){
+    public void neighborUpdate(Entity entity, BlockState state, World world, BlockPos pos, CallbackInfo ci){
         if(CarpetLASSetting.NoteBlockLoadChunk &&world.isReceivingRedstonePower(pos)&&world.getBlockState(pos).get(NOTE)==24&&world.getBlockState(pos.up()).getBlock() == Blocks.POTTED_BLUE_ORCHID){
             ChunkUtils.addNCNoteBlockChunkTicket(world,pos);
         }

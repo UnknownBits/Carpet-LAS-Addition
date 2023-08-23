@@ -40,11 +40,6 @@ public class CarpetLASServer implements ModInitializer,CarpetExtension {
         CarpetServer.settingsManager.parseSettingsClass(CarpetLASSetting.class);
     }
     @Override
-    public void registerCommands(CommandDispatcher<ServerCommandSource> dispatcher)
-    {
-    //Commands
-    }
-    @Override
     public Map<String, String> canHasTranslations(String lang)
     {
         return CarpetLASAdditionTranslations.getTranslationFromResourcePath(lang);

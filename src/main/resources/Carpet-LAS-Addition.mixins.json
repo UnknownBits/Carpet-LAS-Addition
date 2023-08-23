@@ -7,12 +7,8 @@
     "defaultRequire": 1
   },
   "mixins": [
-    "AbstractMinecartEntityMixin",
-    "ChestMinecartEntityMixin",
     "ComposterBlockMixin",
-    "FurnaceMinecartEntityMixin",
     "HopperBlockEntityMixin",
-    "HopperMinecartEntityMixin",
     "NoteBlockMixin",
     "ThrownEntityMixin"
   ],
