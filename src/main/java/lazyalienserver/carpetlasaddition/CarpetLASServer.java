@@ -4,9 +4,11 @@ import carpet.CarpetExtension;
 import carpet.CarpetServer;
 import com.mojang.brigadier.CommandDispatcher;
 import lazyalienserver.carpetlasaddition.logging.LoggerRegistry;
+import lazyalienserver.carpetlasaddition.logging.Loggers.BlockUpdateLogger.BlockUpdateLogger;
 import lazyalienserver.carpetlasaddition.utils.CarpetLASAdditionTranslations;
 import lazyalienserver.carpetlasaddition.utils.LASLogUtils;
 import net.fabricmc.api.ModInitializer;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.command.ServerCommandSource;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -51,6 +53,8 @@ public class CarpetLASServer implements ModInitializer,CarpetExtension {
     {
         return CarpetLASAdditionTranslations.getTranslationFromResourcePath(lang);
     }
+    @Override
+    public void onTick(MinecraftServer server){
 
-
+    }
 }

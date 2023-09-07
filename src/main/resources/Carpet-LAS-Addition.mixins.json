@@ -15,6 +15,7 @@
     "HopperBlockEntityMixin",
     "HopperMinecartEntityMixin",
     "NoteBlockMixin",
+    "ServerWorldMixin",
     "ThrownEntityMixin"
   ],
   "client": [

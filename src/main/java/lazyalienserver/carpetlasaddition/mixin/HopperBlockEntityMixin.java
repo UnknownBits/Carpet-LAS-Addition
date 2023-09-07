@@ -12,7 +12,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(HopperBlockEntity.class)
 public class HopperBlockEntityMixin {
-    //HopperBlockEntity hopperBlockEntity=(HopperBlockEntity) (Object)this;
 
     @Inject(at=@At(value = "INVOKE",target = "Lnet/minecraft/world/World;getTime()J"),method = "serverTick")
     private static void serverTick(World world, BlockPos pos, BlockState state, HopperBlockEntity blockEntity, CallbackInfo ci){

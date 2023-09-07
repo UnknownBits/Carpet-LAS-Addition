@@ -10,6 +10,7 @@ public class LoggerRegistry {
     public static void registerLoggers(){
         LoggerRegister(createCarpetLogger("hopperCoolTime",null,null));
         LoggerRegister(createCarpetLogger("blockUpdate",null,null));
+        //LoggerRegister(createCarpetLogger("blockUpdate","brief",new String[]{"all","brief","clear"}));
     }
     private static void LoggerRegister(Logger logger){
         carpet.logging.LoggerRegistry.registerLogger(logger.getLogName(),logger);

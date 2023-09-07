@@ -26,8 +26,8 @@ public class BaseRender {
             return 0;
         }
     }
-   public static void drawString(String texts,float x,float y,float z, int colors,boolean visibleThroughObjects){
-       DebugRenderer.drawString(texts,x,y,z,colors,0.03F,true,0.0F,visibleThroughObjects);
+   public static void drawString(String texts,float x,float y,float z, int colors,boolean visibleThroughObjects,float size){
+       DebugRenderer.drawString(texts,x,y,z,colors,1*size,true,0.0F,visibleThroughObjects);
    }
    public static void drawBox(Box box,float red,float green,float blue,float alpha){
         DebugRenderer.drawBox(box,red,green,blue,alpha);
@@ -55,10 +55,8 @@ public class BaseRender {
         Vec3d vec3d1=new Vec3d(blockPos1.getX(),blockPos1.getY(),blockPos1.getZ());
         Vec3d vec3d2=new Vec3d(blockPos2.getX(),blockPos2.getY(),blockPos2.getZ());
 
-
-
-        drawLine(vec3d1,vec3d2,red,green,blue,1,5);
-        //drawBox(blockPos1,blockPos2,red,green,blue,alpha,visibleThroughObjects);
+        //drawLine(vec3d1,vec3d2,red,green,blue,1,5);
+        drawBox(blockPos1,blockPos2,red,green,blue,alpha,visibleThroughObjects);
 
     }
 
