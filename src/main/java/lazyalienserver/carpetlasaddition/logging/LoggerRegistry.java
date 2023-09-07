@@ -6,8 +6,10 @@ import org.jetbrains.annotations.Nullable;
 
 public class LoggerRegistry {
     public static boolean __hopperCoolTime =false;
+    public static boolean __blockUpdate = false;
     public static void registerLoggers(){
         LoggerRegister(createCarpetLogger("hopperCoolTime",null,null));
+        LoggerRegister(createCarpetLogger("blockUpdate",null,null));
     }
     private static void LoggerRegister(Logger logger){
         carpet.logging.LoggerRegistry.registerLogger(logger.getLogName(),logger);

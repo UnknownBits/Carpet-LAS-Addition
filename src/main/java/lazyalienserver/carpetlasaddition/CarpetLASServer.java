@@ -5,6 +5,7 @@ import carpet.CarpetServer;
 import com.mojang.brigadier.CommandDispatcher;
 import lazyalienserver.carpetlasaddition.logging.LoggerRegistry;
 import lazyalienserver.carpetlasaddition.utils.CarpetLASAdditionTranslations;
+import lazyalienserver.carpetlasaddition.utils.LASLogUtils;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.server.command.ServerCommandSource;
 import org.apache.logging.log4j.LogManager;
@@ -37,6 +38,7 @@ public class CarpetLASServer implements ModInitializer,CarpetExtension {
 
     @Override
     public void onGameStarted(){
+        LASLogUtils.log("Carpet-LAS-Addition loaded.");
         CarpetServer.settingsManager.parseSettingsClass(CarpetLASSetting.class);
     }
     @Override

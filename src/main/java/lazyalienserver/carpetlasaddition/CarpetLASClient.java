@@ -1,6 +1,7 @@
 package lazyalienserver.carpetlasaddition;
 
 import lazyalienserver.carpetlasaddition.commands.Client.SetRenderDistanceCommand;
+import lazyalienserver.carpetlasaddition.commands.TestCommand;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -11,7 +12,8 @@ public class CarpetLASClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        //TestCommand.register(ClientCommandManager.DISPATCHER);
+        TestCommand.register(ClientCommandManager.DISPATCHER);
         SetRenderDistanceCommand.register(ClientCommandManager.DISPATCHER);
+        //CalcPearlCommand.register(ClientCommandManager.DISPATCHER);
     }
 }
