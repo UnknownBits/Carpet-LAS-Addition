@@ -3,9 +3,6 @@ package lazyalienserver.carpetlasaddition;
 import carpet.CarpetExtension;
 import carpet.CarpetServer;
 import com.mojang.brigadier.CommandDispatcher;
-import lazyalienserver.carpetlasaddition.commands.BinaryCommand;
-import lazyalienserver.carpetlasaddition.commands.CalculateCommand;
-import lazyalienserver.carpetlasaddition.commands.DecimalCommand;
 import lazyalienserver.carpetlasaddition.logging.LoggerRegistry;
 import lazyalienserver.carpetlasaddition.utils.CarpetLASAdditionTranslations;
 import lazyalienserver.carpetlasaddition.utils.LASLogUtils;
@@ -43,9 +40,6 @@ public class CarpetLASServer implements ModInitializer,CarpetExtension {
     }
 
     public static void registerLASCommands(CommandDispatcher<ServerCommandSource> dispatcher, boolean b) {
-        BinaryCommand.register(dispatcher);
-        DecimalCommand.register(dispatcher);
-        CalculateCommand.register(dispatcher);
     }
 
     @Override
