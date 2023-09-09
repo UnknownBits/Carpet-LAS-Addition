@@ -1,5 +1,6 @@
 {
   "category.LAS": "LAS",
+  "category.LASCommand": "LASCommand",
 
   "rule.enderPearlChunkLoading.name": "末影珍珠区块加载",
   "rule.enderPearlChunkLoading.desc": "让水平移动的末影珍珠可以强加载区块",

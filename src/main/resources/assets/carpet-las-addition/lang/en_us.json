@@ -1,5 +1,6 @@
 {
   "category.LAS": "LAS",
+  "category.LASCommand": "LASCommand",
 
   "rule.enderPearlChunkLoading.name": "Ender Pearl Chunk loading",
   "rule.enderPearlChunkLoading.desc": "Allow horizontally moving ender pearls to force chunk loading",

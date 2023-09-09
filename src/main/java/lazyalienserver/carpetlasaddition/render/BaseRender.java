@@ -6,11 +6,15 @@ import com.mojang.brigadier.Command;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.render.*;
+import net.minecraft.client.render.Camera;
+import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.debug.DebugRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.Text;
 import net.minecraft.util.math.AffineTransformation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Box;
+import net.minecraft.util.math.Vec3d;
 import org.joml.Matrix3fc;
 import org.joml.Matrix4f;
 
@@ -22,6 +26,7 @@ public class BaseRender {
     public static double getMaxRenderDistance(){
         return MAX_RENDER_DISTANCE;
     }
+
     public static int setMaxRenderDistance(Integer MaxRenderDistance){
         if(MaxRenderDistance>=0) {
             MAX_RENDER_DISTANCE = MaxRenderDistance;
@@ -31,10 +36,31 @@ public class BaseRender {
             return 0;
         }
     }
-   public static void drawString(MatrixStack matrices, String texts, BlockPos pos, int colors){
+   public static void drawString(MatrixStack matrices, String texts, BlockPos pos, int colors) {
        //drawString(texts,x,y,z,colors,0.03F,true,0.0F,true);
-       drawString(matrices,pos,0.03F,new String[]{texts},new int[]{colors});
+       drawString(matrices, pos, 0.03F, new String[]{texts}, new int[]{colors});
        //DebugRenderer.drawString(matrices,VertexConsumerProvider.immediate(new BufferBuilder(0x200000)),texts,x,y,z,colors,0.03F,true,0.0F,true);
+   }
+   public static void drawBox(Box box, float red, float green, float blue, float alpha){
+        DebugRenderer.drawBox(box,red,green,blue,alpha);
+   }
+   public static void drawBox(BlockPos blockPos1,BlockPos blockPos2,float red,float green,float blue,float alpha,boolean visibleThroughObjects){
+        RenderSystem.disableTexture();
+        RenderSystem.enableBlend();
+        RenderSystem.defaultBlendFunc();
+        RenderSystem.enablePolygonOffset();
+        if (visibleThroughObjects) {
+           RenderSystem.disableDepthTest();
+        } else {
+           RenderSystem.enableDepthTest();
+        }
+        DebugRenderer.drawBox(blockPos1,blockPos2,red,green,blue,alpha);
+
+        RenderSystem.enableDepthTest();
+        RenderSystem.disablePolygonOffset();
+        RenderSystem.depthMask(true);
+        RenderSystem.enableTexture();
+        RenderSystem.disableBlend();
    }
 
    /**
@@ -87,4 +113,49 @@ public class BaseRender {
             matrixStack.pop();
         }
     }
+
+    public static void drawBoxWithLine(BlockPos blockPos1,BlockPos blockPos2,float red,float green,float blue,float alpha,boolean visibleThroughObjects){
+        Vec3d vec3d1=new Vec3d(blockPos1.getX(),blockPos1.getY(),blockPos1.getZ());
+        Vec3d vec3d2=new Vec3d(blockPos2.getX(),blockPos2.getY(),blockPos2.getZ());
+
+        //drawLine(vec3d1,vec3d2,red,green,blue,1,5);
+        drawBox(blockPos1,blockPos2,red,green,blue,alpha,visibleThroughObjects);
+
+    }
+
+    public static void drawLine(Vec3d pos1,Vec3d pos2,float red, float green, float blue, float alpha,float width){
+        RenderSystem.disableTexture();
+        RenderSystem.enableBlend();
+        RenderSystem.defaultBlendFunc();
+        RenderSystem.lineWidth(width);
+
+        drawLines(pos1,pos2,red,green,blue,alpha);
+
+        RenderSystem.lineWidth(1);
+        RenderSystem.enableTexture();
+        RenderSystem.disableBlend();
+    }
+
+    private static void drawLines(Vec3d pos1,Vec3d pos2,float red, float green, float blue, float alpha){
+        Camera camera = MinecraftClient.getInstance().gameRenderer.getCamera();
+
+        if (!camera.isReady()) {
+            return;
+        }
+        Vec3d vec3d = camera.getPos().negate();
+        Box box=new Box(pos1,pos2).offset(vec3d);
+
+        Tessellator tessellator = Tessellator.getInstance();
+        BufferBuilder bufferBuilder = tessellator.getBuffer();
+        RenderSystem.setShader(GameRenderer::getPositionColorShader);
+        bufferBuilder.begin(VertexFormat.DrawMode.LINES, VertexFormats.POSITION_COLOR);
+
+        bufferBuilder.vertex(box.minX,box.minY,box.minY).color(red,green,blue,alpha).next();
+        bufferBuilder.vertex(box.minX,box.minY,box.minY).color(red,green,blue,alpha).next();
+        bufferBuilder.vertex(box.maxX,box.maxY,box.maxZ).color(red,green,blue,alpha).next();
+        bufferBuilder.vertex(box.maxX,box.maxY,box.maxZ).color(red,green,blue,alpha).next();
+
+        tessellator.draw();
+    }
+
 }

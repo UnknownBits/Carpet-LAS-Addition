@@ -1,10 +1,10 @@
 package lazyalienserver.carpetlasaddition;
 
+import carpet.settings.Rule;
 
-import carpet.api.settings.Rule;
+import static lazyalienserver.carpetlasaddition.settings.LASAdditionRuleCategory.*;
 
 public class CarpetLASSetting {
-    public static final String LASAddition="LAS";
     //@Rule(desc = "Allow horizontally moving ender pearls to force chunk loading", category = {LASAddition})
     @Rule(categories = {"LAS"})
     public static boolean enderPearlChunkLoading = false;

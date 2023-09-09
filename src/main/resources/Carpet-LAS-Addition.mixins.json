@@ -7,9 +7,11 @@
     "defaultRequire": 1
   },
   "mixins": [
+    "AbstractBlockMixin",
     "ComposterBlockMixin",
     "HopperBlockEntityMixin",
     "NoteBlockMixin",
+    "ServerWorldMixin",
     "ThrownEntityMixin"
   ],
   "client": [

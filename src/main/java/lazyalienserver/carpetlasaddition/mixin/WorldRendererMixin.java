@@ -7,7 +7,7 @@ import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.render.LightmapTextureManager;
 import net.minecraft.client.render.WorldRenderer;
 import net.minecraft.client.util.math.MatrixStack;
-import org.joml.Matrix4f;
+import net.minecraft.util.math.Matrix4f;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -26,10 +26,27 @@ public class WorldRendererMixin {
         WorldRendererMixin.render(matrices);
         /*matrixStack.pop();
         RenderSystem.applyModelViewMatrix();*/
+        RenderSystem.applyModelViewMatrix();
+
+        WorldRendererMixin.render(matrices);
+        //WorldRendererMixin.Test(matrices);
+
+        matrixStack.pop();
+        RenderSystem.applyModelViewMatrix();
     }
 
     @Unique
     private static void render(MatrixStack matrices){
         HopperCoolTimeLogger.RenderHopperCoolTime(matrices);
+    private static void render(MatrixStack matrices){
+        HopperCoolTimeLogger.RenderHopperCoolTime();
+        BlockUpdateLogger.RenderBlockUpDate();
+    }
+    @Unique
+    private static void Test(MatrixStack matrices){
+        Camera camera=MinecraftClient.getInstance().gameRenderer.getCamera();
+        MinecraftClient.getInstance().debugRenderer.chunkBorderDebugRenderer.render(matrices,null,camera.getPos().x,camera.getPos().y,camera.getPos().z);
+        //VertexConsumerProvider.Immediate immediate = this.bufferBuilders.getEntityVertexConsumers();
+        //VertexConsumer vertexConsumer3 = immediate.getBuffer(RenderLayer.getLines());
     }
 }

@@ -12,18 +12,25 @@ import static net.fabricmc.fabric.api.client.command.v2.ClientCommandManager.lit
 public class TestCommand {
     public static boolean tf=false;
     public static void register(CommandDispatcher<FabricClientCommandSource> dispatcher){
-        dispatcher.register(literal("Test").executes(c->RenderLine()));
+        dispatcher.register(literal("Test").executes(c->RenderLine()).then(literal("list").executes(c->List())));
     }
 
     public static int RenderLine(){
+
         MinecraftClient client=MinecraftClient.getInstance();
         tf=!tf;
         if(tf){
             client.player.sendMessage(Text.of("启动渲染"),false);
+            BlockUpdateLogger.ClearHashMap();
+            //BlockUpdateLogger.getBlockUpdateMap().put(MinecraftClient.getInstance().player.getBlockPos(),true);
+            LASLogUtils.log("LAS-Log");
         }
         else {
             client.player.sendMessage(Text.of("关闭渲染"),false);
-            HopperCoolTimeLogger.getHopperBlockCoolTime().clear();
+            BlockUpdateLogger.ClearHashMap();
+            //BlockUpdateLogger.getBlockUpdateMap().put(MinecraftClient.getInstance().player.getBlockPos(),false);
+            //HopperCoolTimeLogger.getHopperBlockCoolTime().clear();
+            LASLogUtils.log("LAS-Log");
         }
         return 0;
     }

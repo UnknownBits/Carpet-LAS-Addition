@@ -9,8 +9,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
-
-import java.util.*;
+import java.util.Comparator;
 
 public class ChunkUtils {
     public static final ChunkTicketType<ChunkPos> ENDER_PEARL_TICKET=ChunkTicketType.create("endeer_pearl", Comparator.comparingLong(ChunkPos::toLong),2);
@@ -27,7 +26,22 @@ public class ChunkUtils {
             double nx = pos.x + velocity.x;
             double nz = pos.z + velocity.z;
             ChunkPos cp = new ChunkPos(MathHelper.floor(nx) >> 4, MathHelper.floor(nz) >> 4);
+            ChunkPos cp2 = new ChunkPos(MathHelper.floor(pos.x) >> 4, MathHelper.floor(pos.z) >> 4);
+            ((ServerWorld) world).getChunkManager().addTicket(ENDER_PEARL_TICKET, cp2, 2, cp2);
             ((ServerWorld) world).getChunkManager().addTicket(ENDER_PEARL_TICKET, cp, 2, cp);
+            /*
+            //Log-Start
+            if(TestCommand.tf) {
+                LASLogUtils.log(world.getServer().getTickTime() + "   POS:  x:" + pos.x + "  z:" + pos.z);
+                LASLogUtils.log(world.getServer().getTickTime() + "   Velocity:  x:" + velocity.x + "  z:" + velocity.z);
+                LASLogUtils.log(world.getServer().getTickTime() + "   P+Z:  nx:" + nx + "  nz:" + nz);
+
+                Messenger.print_server_message(world.getServer(), Messenger.tp(" " + world.getServer().getTickTime() + " POS:", pos));
+                Messenger.print_server_message(world.getServer(), Messenger.c(" " + world.getServer().getTickTime() + "  Velocity:  x:" + velocity.x + "  z:" + velocity.z));
+                Messenger.print_server_message(world.getServer(), Messenger.tp(" " + world.getServer().getTickTime() + " P+Z:", nx, pos.y, nz));
+            }
+            //Log-End
+            */
         }
     }
     public static void addNCNoteBlockChunkTicket(World world, BlockPos pos){
