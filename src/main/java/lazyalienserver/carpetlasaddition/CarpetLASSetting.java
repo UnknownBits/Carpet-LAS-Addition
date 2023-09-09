@@ -23,20 +23,5 @@ public class CarpetLASSetting {
     )
     public static boolean MinecartDropModify =false;
 
-    @Rule(
-            desc = "A Calculate Command in minecraft",category = {LASAddition,LASAdditionCommand,COMMAND}
-    )
-    public static String commandCalculate = "true";
-
-    @Rule(
-            desc = "A Command,it can Decimal to Binary",category = {LASAddition,LASAdditionCommand,COMMAND}
-    )
-    public static String commandBinary = "true";
-
-    @Rule(
-            desc = "A Command,it can Binary to Decimal",category = {LASAddition,LASAdditionCommand,COMMAND}
-    )
-    public static String commandDecimal = "true";
-
 
 }
