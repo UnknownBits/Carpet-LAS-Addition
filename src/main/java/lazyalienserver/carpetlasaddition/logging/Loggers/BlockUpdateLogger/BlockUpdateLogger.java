@@ -5,6 +5,7 @@ import carpet.logging.Logger;
 import carpet.utils.Messenger;
 import lazyalienserver.carpetlasaddition.logging.LoggerRegistry;
 import lazyalienserver.carpetlasaddition.render.BaseRender;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.BaseText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.math.BlockPos;
@@ -14,7 +15,19 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class BlockUpdateLogger {
     private static final Map<BlockPos, UpdateType> BlockUpdateMap = new ConcurrentHashMap<>();
-    private static Logger log=carpet.logging.LoggerRegistry.getLogger("blockUpdate");
+    private static final Logger log=carpet.logging.LoggerRegistry.getLogger("blockUpdate");
+
+    private static int option=0;
+
+    private static boolean isReturn=true;
+
+    private static void setIsReturn(boolean Return){
+        isReturn = Return;
+    }
+
+    private static void setOption(int option1){
+        option=option1;
+    }
 
 
     public static void RenderBlockUpDate(){
@@ -34,6 +47,7 @@ public class BlockUpdateLogger {
         }
     }
     public static void NCUpdate(BlockPos pos){
+        tick(pos,UpdateType.NC);
         if (BlockUpdateMap.get(pos)==null){
             BlockUpdateMap.put(new BlockPos(pos),UpdateType.NC);
             //HashMapHelper.put(BlockUpdateMap,pos,UpdateType.NC);
@@ -46,6 +60,7 @@ public class BlockUpdateLogger {
         }
     }
     public static void PPUpdate(BlockPos pos){
+        tick(pos,UpdateType.PP);
         if (BlockUpdateMap.get(pos)==null){
             BlockUpdateMap.put(new BlockPos(pos),UpdateType.PP);
             //HashMapHelper.put(BlockUpdateMap,pos,UpdateType.PP);
@@ -69,18 +84,44 @@ public class BlockUpdateLogger {
         BlockUpdateMap.clear();
     }
     public static void tickInTickFreeze(){
-        ClearHashMap();
+        if (option!=1) {
+            ClearHashMap();
+        }
     }
-   /* public static void tick(){
+   public static void tick(BlockPos pos,UpdateType type){
         log.log((option) -> {
             switch (option) {
-                case "brief":
-                    return new BaseText[]{Messenger.c()};
-                case "full":
-                    return new BaseText[]{Messenger.c(new Object[]{"r #" + tntCount, "m @" + gametime, "g : ", "l P ", Messenger.dblf("l", new double[]{this.primedX, this.primedY, this.primedZ}), "w  ", Messenger.dblf("l", new double[]{this.primedAngle.x, this.primedAngle.y, this.primedAngle.z}), "r  E ", Messenger.dblf("r", new double[]{x, y, z})})};
-                default:
+                case "brief" -> {
+                    setOption(0);
+                    if (isReturn) {
+                        return new BaseText[]{Messenger.c("  " + CarpetServer.minecraft_server.getOverworld().getTime() + "  @" + type.toString(), Messenger.tp("Update", pos))};
+                    }
+                    else return null;
+                }
+                case "all" -> {
+                    setOption(1);
+                    if (isReturn) {
+                        return new BaseText[]{Messenger.c("  " + CarpetServer.minecraft_server.getOverworld().getTime() + "  @" + type.toString(), Messenger.tp("Update", pos))};
+                    }
+                    else return null;
+                }
+                case "clean" -> {
+                    setOption(0);
+                    //BlockUpdateLogger.ClearHashMap();
                     return null;
+                }
+                case "enableReturn"->{
+                    setIsReturn(true);
+                    return null;
+                }
+                case "disableReturn"->{
+                    setIsReturn(false);
+                    return null;
+                }
+                default -> {
+                    return null;
+                }
             }
         });
-    }*/
+    }
 }

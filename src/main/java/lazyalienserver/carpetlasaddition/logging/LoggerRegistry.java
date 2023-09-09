@@ -9,8 +9,8 @@ public class LoggerRegistry {
     public static boolean __blockUpdate = false;
     public static void registerLoggers(){
         LoggerRegister(createCarpetLogger("hopperCoolTime",null,null));
-        LoggerRegister(createCarpetLogger("blockUpdate",null,null));
-        //LoggerRegister(createCarpetLogger("blockUpdate","brief",new String[]{"all","brief","clear"}));
+        //LoggerRegister(createCarpetLogger("blockUpdate",null,null));
+        LoggerRegister(createCarpetLogger("blockUpdate","brief",new String[]{"all","brief","clean","enableReturn","disableReturn"}));
     }
     private static void LoggerRegister(Logger logger){
         carpet.logging.LoggerRegistry.registerLogger(logger.getLogName(),logger);
