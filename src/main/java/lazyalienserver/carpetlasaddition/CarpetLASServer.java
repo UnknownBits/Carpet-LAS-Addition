@@ -3,11 +3,14 @@ package lazyalienserver.carpetlasaddition;
 import carpet.CarpetExtension;
 import carpet.CarpetServer;
 import com.mojang.brigadier.CommandDispatcher;
+import lazyalienserver.carpetlasaddition.commands.BinaryCommand;
+import lazyalienserver.carpetlasaddition.commands.CalculateCommand;
+import lazyalienserver.carpetlasaddition.commands.DecimalCommand;
 import lazyalienserver.carpetlasaddition.logging.LoggerRegistry;
-import lazyalienserver.carpetlasaddition.logging.Loggers.BlockUpdateLogger.BlockUpdateLogger;
 import lazyalienserver.carpetlasaddition.utils.CarpetLASAdditionTranslations;
 import lazyalienserver.carpetlasaddition.utils.LASLogUtils;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.command.ServerCommandSource;
 import org.apache.logging.log4j.LogManager;
@@ -31,11 +34,18 @@ public class CarpetLASServer implements ModInitializer,CarpetExtension {
     @Override
     public void onInitialize() {
         CarpetLASServer.loadExtension();
+        CommandRegistrationCallback.EVENT.register(CarpetLASServer::registerLASCommands);
     }
 
     @Override
     public void registerLoggers(){
         LoggerRegistry.registerLoggers();
+    }
+
+    public static void registerLASCommands(CommandDispatcher<ServerCommandSource> dispatcher, boolean b) {
+        BinaryCommand.register(dispatcher);
+        DecimalCommand.register(dispatcher);
+        CalculateCommand.register(dispatcher);
     }
 
     @Override
