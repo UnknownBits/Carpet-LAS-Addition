@@ -4,12 +4,12 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import lazyalienserver.carpetlasaddition.exp4j.Expression;
 import lazyalienserver.carpetlasaddition.exp4j.ExpressionBuilder;
-import net.fabricmc.fabric.api.client.command.v1.ClientCommandManager;
-import net.fabricmc.fabric.api.client.command.v1.FabricClientCommandSource;
+import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.text.Text;
+import static net.fabricmc.fabric.api.client.command.v2.ClientCommandManager.literal;
 
-import static net.fabricmc.fabric.api.client.command.v1.ClientCommandManager.literal;
+import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
 
 public class CalculateCommand {
 

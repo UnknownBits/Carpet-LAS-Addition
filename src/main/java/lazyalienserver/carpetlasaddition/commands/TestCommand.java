@@ -1,11 +1,13 @@
 package lazyalienserver.carpetlasaddition.commands;
 
 import com.mojang.brigadier.CommandDispatcher;
-import lazyalienserver.carpetlasaddition.logging.Loggers.HopperCoolTimeLogger.HopperCoolTimeLogger;
+import lazyalienserver.carpetlasaddition.logging.Loggers.BlockUpdateLogger.BlockUpdateLogger;
+import lazyalienserver.carpetlasaddition.utils.LASLogUtils;
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.text.Text;
 
+import static lazyalienserver.carpetlasaddition.logging.Loggers.BlockUpdateLogger.BlockUpdateLogger.List;
 import static net.fabricmc.fabric.api.client.command.v2.ClientCommandManager.literal;
 
 

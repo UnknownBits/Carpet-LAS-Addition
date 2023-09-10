@@ -7,7 +7,6 @@ import lazyalienserver.carpetlasaddition.logging.LoggerRegistry;
 import lazyalienserver.carpetlasaddition.utils.CarpetLASAdditionTranslations;
 import lazyalienserver.carpetlasaddition.utils.LASLogUtils;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.command.ServerCommandSource;
 import org.apache.logging.log4j.LogManager;
@@ -31,7 +30,7 @@ public class CarpetLASServer implements ModInitializer,CarpetExtension {
     @Override
     public void onInitialize() {
         CarpetLASServer.loadExtension();
-        CommandRegistrationCallback.EVENT.register(CarpetLASServer::registerLASCommands);
+        //CommandRegistrationCallback.EVENT.register(CarpetLASServer::registerLASCommands);
     }
 
     @Override

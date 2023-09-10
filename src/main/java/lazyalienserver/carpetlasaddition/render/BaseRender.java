@@ -6,16 +6,10 @@ import com.mojang.brigadier.Command;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.render.*;
-import net.minecraft.client.render.Camera;
-import net.minecraft.client.render.VertexConsumerProvider;
-import net.minecraft.client.render.debug.DebugRenderer;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.text.Text;
-import net.minecraft.util.math.AffineTransformation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
-import org.joml.Matrix3fc;
 import org.joml.Matrix4f;
 
 public class BaseRender {
@@ -36,16 +30,16 @@ public class BaseRender {
             return 0;
         }
     }
-   public static void drawString(MatrixStack matrices, String texts, BlockPos pos, int colors) {
+   public static void drawString(MatrixStack matrices, String texts, BlockPos pos, int colors,float size) {
        //drawString(texts,x,y,z,colors,0.03F,true,0.0F,true);
-       drawString(matrices, pos, 0.03F, new String[]{texts}, new int[]{colors});
+       drawString(matrices, pos, 1*size, new String[]{texts}, new int[]{colors});
        //DebugRenderer.drawString(matrices,VertexConsumerProvider.immediate(new BufferBuilder(0x200000)),texts,x,y,z,colors,0.03F,true,0.0F,true);
    }
-   public static void drawBox(Box box, float red, float green, float blue, float alpha){
-        DebugRenderer.drawBox(box,red,green,blue,alpha);
+   public static void drawBox(MatrixStack matrices,Box box, float red, float green, float blue, float alpha){
+        //DebugRenderer.drawBox(matrices,VertexConsumerProvider.immediate(new BufferBuilder(1)),box,red,green,blue,alpha);
    }
-   public static void drawBox(BlockPos blockPos1,BlockPos blockPos2,float red,float green,float blue,float alpha,boolean visibleThroughObjects){
-        RenderSystem.disableTexture();
+   public static void drawBox(MatrixStack matrices,BlockPos blockPos1,BlockPos blockPos2,float red,float green,float blue,float alpha,boolean visibleThroughObjects){
+       RenderSystem.resetTextureMatrix();
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
         RenderSystem.enablePolygonOffset();
@@ -54,13 +48,31 @@ public class BaseRender {
         } else {
            RenderSystem.enableDepthTest();
         }
-        DebugRenderer.drawBox(blockPos1,blockPos2,red,green,blue,alpha);
+        //DebugRenderer.drawBox(matrices,,blockPos1,blockPos2,red,green,blue,alpha);
+        drawBox(matrices,blockPos1,blockPos2,red,green,blue,alpha);
 
         RenderSystem.enableDepthTest();
         RenderSystem.disablePolygonOffset();
         RenderSystem.depthMask(true);
-        RenderSystem.enableTexture();
+       RenderSystem.resetTextureMatrix();
         RenderSystem.disableBlend();
+   }
+
+   private static void drawBox(MatrixStack matrixStack,BlockPos blockPos1,BlockPos blockPos2,float red,float green,float blue,float alpha){
+        Tessellator tessellator=Tessellator.getInstance();
+       BufferBuilder Buffer=tessellator.getBuffer();
+       Buffer.begin(VertexFormat.DrawMode.QUADS,VertexFormats.POSITION_COLOR);
+
+       Buffer.vertex(blockPos1.getX(),blockPos1.getY(),blockPos1.getZ()).color(red,green,blue,alpha).next();
+       Buffer.vertex(blockPos1.getX(),blockPos2.getY(),blockPos1.getZ()).color(red,green,blue,alpha).next();
+       Buffer.vertex(blockPos1.getX(),blockPos1.getY(),blockPos2.getZ()).color(red,green,blue,alpha).next();
+       Buffer.vertex(blockPos2.getX(),blockPos1.getY(),blockPos1.getZ()).color(red,green,blue,alpha).next();
+       Buffer.vertex(blockPos2.getX(),blockPos2.getY(),blockPos1.getZ()).color(red,green,blue,alpha).next();
+       Buffer.vertex(blockPos1.getX(),blockPos2.getY(),blockPos2.getZ()).color(red,green,blue,alpha).next();
+       Buffer.vertex(blockPos2.getX(),blockPos1.getY(),blockPos2.getZ()).color(red,green,blue,alpha).next();
+       Buffer.vertex(blockPos2.getX(),blockPos2.getY(),blockPos2.getZ()).color(red,green,blue,alpha).next();
+
+       tessellator.draw();
    }
 
    /**
@@ -114,17 +126,18 @@ public class BaseRender {
         }
     }
 
-    public static void drawBoxWithLine(BlockPos blockPos1,BlockPos blockPos2,float red,float green,float blue,float alpha,boolean visibleThroughObjects){
+    public static void drawBoxWithLine(MatrixStack matrixStack,BlockPos blockPos1,BlockPos blockPos2,float red,float green,float blue,float alpha,boolean visibleThroughObjects){
         Vec3d vec3d1=new Vec3d(blockPos1.getX(),blockPos1.getY(),blockPos1.getZ());
         Vec3d vec3d2=new Vec3d(blockPos2.getX(),blockPos2.getY(),blockPos2.getZ());
 
         //drawLine(vec3d1,vec3d2,red,green,blue,1,5);
-        drawBox(blockPos1,blockPos2,red,green,blue,alpha,visibleThroughObjects);
+        drawBox(matrixStack,blockPos1,blockPos2,red,green,blue,alpha,visibleThroughObjects);
 
     }
 
     public static void drawLine(Vec3d pos1,Vec3d pos2,float red, float green, float blue, float alpha,float width){
-        RenderSystem.disableTexture();
+        //RenderSystem.disableTexture();
+        RenderSystem.resetTextureMatrix();
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
         RenderSystem.lineWidth(width);
@@ -132,7 +145,7 @@ public class BaseRender {
         drawLines(pos1,pos2,red,green,blue,alpha);
 
         RenderSystem.lineWidth(1);
-        RenderSystem.enableTexture();
+        RenderSystem.resetTextureMatrix();
         RenderSystem.disableBlend();
     }
 
@@ -147,7 +160,7 @@ public class BaseRender {
 
         Tessellator tessellator = Tessellator.getInstance();
         BufferBuilder bufferBuilder = tessellator.getBuffer();
-        RenderSystem.setShader(GameRenderer::getPositionColorShader);
+        RenderSystem.setShader(GameRenderer::getPositionColorProgram);
         bufferBuilder.begin(VertexFormat.DrawMode.LINES, VertexFormats.POSITION_COLOR);
 
         bufferBuilder.vertex(box.minX,box.minY,box.minY).color(red,green,blue,alpha).next();
