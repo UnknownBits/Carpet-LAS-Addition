@@ -6,6 +6,7 @@ import com.mojang.brigadier.Command;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.render.*;
+import net.minecraft.client.render.debug.DebugRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
@@ -48,8 +49,13 @@ public class BaseRender {
         } else {
            RenderSystem.enableDepthTest();
         }
-        //DebugRenderer.drawBox(matrices,,blockPos1,blockPos2,red,green,blue,alpha);
-        drawBox(matrices,blockPos1,blockPos2,red,green,blue,alpha);
+       Tessellator tessellator = Tessellator.getInstance();
+       BufferBuilder buffer = tessellator.getBuffer();
+       RenderSystem.setShader(GameRenderer::getPositionColorProgram);
+       //buffer.begin(VertexFormat.DrawMode.TRIANGLE_STRIP, VertexFormats.POSITION_COLOR);
+       VertexConsumerProvider.Immediate vertexConsumerProvider=VertexConsumerProvider.immediate(Tessellator.getInstance().getBuffer());
+        DebugRenderer.drawBox(matrices,vertexConsumerProvider,blockPos1,blockPos2,red,green,blue,alpha);
+        //drawBox(matrices,blockPos1,blockPos2,red,green,blue,alpha);
 
         RenderSystem.enableDepthTest();
         RenderSystem.disablePolygonOffset();
@@ -59,18 +65,48 @@ public class BaseRender {
    }
 
    private static void drawBox(MatrixStack matrixStack,BlockPos blockPos1,BlockPos blockPos2,float red,float green,float blue,float alpha){
-        Tessellator tessellator=Tessellator.getInstance();
-       BufferBuilder Buffer=tessellator.getBuffer();
-       Buffer.begin(VertexFormat.DrawMode.QUADS,VertexFormats.POSITION_COLOR);
+       float x1=blockPos1.getX();
+       float y1=blockPos1.getY();
+       float z1=blockPos1.getZ();
+       float x2=blockPos2.getX();
+       float y2=blockPos2.getY();
+       float z2=blockPos2.getZ();
 
-       Buffer.vertex(blockPos1.getX(),blockPos1.getY(),blockPos1.getZ()).color(red,green,blue,alpha).next();
-       Buffer.vertex(blockPos1.getX(),blockPos2.getY(),blockPos1.getZ()).color(red,green,blue,alpha).next();
-       Buffer.vertex(blockPos1.getX(),blockPos1.getY(),blockPos2.getZ()).color(red,green,blue,alpha).next();
-       Buffer.vertex(blockPos2.getX(),blockPos1.getY(),blockPos1.getZ()).color(red,green,blue,alpha).next();
-       Buffer.vertex(blockPos2.getX(),blockPos2.getY(),blockPos1.getZ()).color(red,green,blue,alpha).next();
-       Buffer.vertex(blockPos1.getX(),blockPos2.getY(),blockPos2.getZ()).color(red,green,blue,alpha).next();
-       Buffer.vertex(blockPos2.getX(),blockPos1.getY(),blockPos2.getZ()).color(red,green,blue,alpha).next();
-       Buffer.vertex(blockPos2.getX(),blockPos2.getY(),blockPos2.getZ()).color(red,green,blue,alpha).next();
+       Tessellator tessellator = Tessellator.getInstance();
+       BufferBuilder buffer = tessellator.getBuffer();
+       RenderSystem.setShader(GameRenderer::getPositionColorProgram);
+       buffer.begin(VertexFormat.DrawMode.TRIANGLE_STRIP, VertexFormats.POSITION_COLOR);
+
+       buffer.vertex(x1, y1, z1).color(red, green, blue, alpha).next();
+       buffer.vertex(x1, y1, z1).color(red, green, blue, alpha).next();
+       buffer.vertex(x1, y1, z1).color(red, green, blue, alpha).next();
+       buffer.vertex(x1, y1, z2).color(red, green, blue, alpha).next();
+       buffer.vertex(x1, y2, z1).color(red, green, blue, alpha).next();
+       buffer.vertex(x1, y2, z2).color(red, green, blue, alpha).next();
+       buffer.vertex(x1, y2, z2).color(red, green, blue, alpha).next();
+       buffer.vertex(x1, y1, z2).color(red, green, blue, alpha).next();
+       buffer.vertex(x2, y2, z2).color(red, green, blue, alpha).next();
+       buffer.vertex(x2, y1, z2).color(red, green, blue, alpha).next();
+       buffer.vertex(x2, y1, z2).color(red, green, blue, alpha).next();
+       buffer.vertex(x2, y1, z1).color(red, green, blue, alpha).next();
+       buffer.vertex(x2, y2, z2).color(red, green, blue, alpha).next();
+       buffer.vertex(x2, y2, z1).color(red, green, blue, alpha).next();
+       buffer.vertex(x2, y2, z1).color(red, green, blue, alpha).next();
+       buffer.vertex(x2, y1, z1).color(red, green, blue, alpha).next();
+       buffer.vertex(x1, y2, z1).color(red, green, blue, alpha).next();
+       buffer.vertex(x1, y1, z1).color(red, green, blue, alpha).next();
+       buffer.vertex(x1, y1, z1).color(red, green, blue, alpha).next();
+       buffer.vertex(x2, y1, z1).color(red, green, blue, alpha).next();
+       buffer.vertex(x1, y1, z2).color(red, green, blue, alpha).next();
+       buffer.vertex(x2, y1, z2).color(red, green, blue, alpha).next();
+       buffer.vertex(x2, y1, z2).color(red, green, blue, alpha).next();
+       buffer.vertex(x1, y2, z1).color(red, green, blue, alpha).next();
+       buffer.vertex(x1, y2, z1).color(red, green, blue, alpha).next();
+       buffer.vertex(x1, y2, z2).color(red, green, blue, alpha).next();
+       buffer.vertex(x2, y2, z1).color(red, green, blue, alpha).next();
+       buffer.vertex(x2, y2, z2).color(red, green, blue, alpha).next();
+       buffer.vertex(x2, y2, z2).color(red, green, blue, alpha).next();
+       buffer.vertex(x2, y2, z2).color(red, green, blue, alpha).next();
 
        tessellator.draw();
    }
