@@ -90,6 +90,7 @@ public class BlockUpdateLogger {
     }
    public static void tick(BlockPos pos,UpdateType type){
         log.log((option) -> {
+
             switch (option) {
                 case "brief" -> {
                     setOption(0);

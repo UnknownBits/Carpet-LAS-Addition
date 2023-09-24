@@ -4,6 +4,7 @@ import carpet.CarpetExtension;
 import carpet.CarpetServer;
 import com.mojang.brigadier.CommandDispatcher;
 import lazyalienserver.carpetlasaddition.logging.LoggerRegistry;
+import lazyalienserver.carpetlasaddition.network.ServerNetworkHandler;
 import lazyalienserver.carpetlasaddition.utils.CarpetLASAdditionTranslations;
 import lazyalienserver.carpetlasaddition.utils.LASLogUtils;
 import net.fabricmc.api.ModInitializer;
@@ -30,8 +31,13 @@ public class CarpetLASServer implements ModInitializer,CarpetExtension {
     public static final Logger LOGGER = LogManager.getLogger(MOD_NAME);
     @Override
     public void onInitialize() {
+        CarpetLASServer.ServerNetWork();
         CarpetLASServer.loadExtension();
         CommandRegistrationCallback.EVENT.register(CarpetLASServer::registerLASCommands);
+    }
+
+    public static void ServerNetWork(){
+        ServerNetworkHandler.loadServer();
     }
 
     @Override

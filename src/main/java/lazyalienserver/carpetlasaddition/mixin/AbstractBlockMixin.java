@@ -17,11 +17,11 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(AbstractBlock.class)
+@Mixin(AbstractBlock.AbstractBlockState.class)
 public class AbstractBlockMixin {
     @Inject(at=@At("HEAD"),method = "getStateForNeighborUpdate")
     //PP Update
-    public void getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos, CallbackInfoReturnable<BlockState> cir){
+    public void getStateForNeighborUpdate(Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos, CallbackInfoReturnable<BlockState> cir){
         if (LoggerRegistry.__blockUpdate) {
             //Messenger.print_server_message(CarpetServer.minecraft_server, Messenger.c("  " + "PP:", Messenger.tp("Update", pos)));
             BlockUpdateLogger.PPUpdate(pos);
@@ -29,7 +29,7 @@ public class AbstractBlockMixin {
     }
     @Inject(at=@At("HEAD"),method = "neighborUpdate")
     //NC Update
-    public void neighborUpdate(BlockState state, World world, BlockPos pos, Block block, BlockPos fromPos, boolean notify, CallbackInfo ci){
+    public void neighborUpdate(World world, BlockPos pos, Block block, BlockPos posFrom, boolean notify, CallbackInfo ci){
         if (LoggerRegistry.__blockUpdate) {
             //Messenger.print_server_message(CarpetServer.minecraft_server, Messenger.c("  " + "NC:", Messenger.tp("Update", pos)));
             BlockUpdateLogger.NCUpdate(pos);
