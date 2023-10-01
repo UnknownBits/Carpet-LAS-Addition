@@ -14,6 +14,7 @@
 - [x] 堆肥等级修改
 - [x] 矿车掉落机制修改
 - [x] 漏斗冷却时间显示
+- [x] 命令调用记录器
 ---
 >##  [<center>**Lazy Alien Server**</center>](LAS/Lazy-Alien-Server.md)
 >  **<center>LAS永存，我们永远在。</center>**

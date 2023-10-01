@@ -2,6 +2,7 @@ package lazyalienserver.carpetlasaddition.commands;
 
 import com.mojang.brigadier.CommandDispatcher;
 import lazyalienserver.carpetlasaddition.logging.Loggers.BlockUpdateLogger.BlockUpdateLogger;
+import lazyalienserver.carpetlasaddition.records.RecordList;
 import lazyalienserver.carpetlasaddition.utils.LASLogUtils;
 import net.fabricmc.fabric.api.client.command.v1.FabricClientCommandSource;
 import net.minecraft.client.MinecraftClient;
@@ -13,12 +14,15 @@ import static net.fabricmc.fabric.api.client.command.v1.ClientCommandManager.lit
 public class TestCommand {
     public static boolean tf=false;
     public static void register(CommandDispatcher<FabricClientCommandSource> dispatcher){
-        dispatcher.register(literal("Test").executes(c->RenderLine()).then(literal("list").executes(c->List())));
+        dispatcher.register(literal("Test").executes(c->RenderLine()).then(literal("list").executes(c->RenderLine())));
     }
 
     public static int RenderLine(){
 
-        MinecraftClient client=MinecraftClient.getInstance();
+        for (String s: RecordList.commandRecord.getRecord()){
+            LASLogUtils.log(s);
+        }
+        /*MinecraftClient client=MinecraftClient.getInstance();
         tf=!tf;
         if(tf){
             client.player.sendMessage(Text.of("启动渲染"),false);
@@ -40,6 +44,7 @@ public class TestCommand {
         BlockUpdateLogger.List();
         return 0;
     }
-
-
+*/
+        return 0;
+    }
 }

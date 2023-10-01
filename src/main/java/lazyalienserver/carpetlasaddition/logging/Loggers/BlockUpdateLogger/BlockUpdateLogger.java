@@ -34,13 +34,13 @@ public class BlockUpdateLogger {
         if (LoggerRegistry.__blockUpdate) {
             for (Map.Entry<BlockPos, UpdateType> entry : BlockUpdateMap.entrySet()) {
                 if (entry.getValue() == UpdateType.NC) {
-                    BaseRender.drawString("NC", entry.getKey().getX() + 0.5F, entry.getKey().getY() + 0.5F, entry.getKey().getZ() + 0.5F, Formatting.DARK_GRAY.getColorValue(), true,0.02F);
+                    BaseRender.drawString("NC", entry.getKey().getX() + 0.5F, entry.getKey().getY() + 0.5F, entry.getKey().getZ() + 0.5F, Formatting.DARK_AQUA.getColorValue(), true,0.025F);
                     BaseRender.drawBoxWithLine(entry.getKey(), entry.getKey().add(1, 1, 1), 1, 0, 0, 0.1F, true);
                 } else if (entry.getValue() == UpdateType.PP) {
-                    BaseRender.drawString("PP", entry.getKey().getX() + 0.5F, entry.getKey().getY() + 0.5F, entry.getKey().getZ() + 0.5F, Formatting.DARK_GRAY.getColorValue(), true,0.02F);
+                    BaseRender.drawString("PP", entry.getKey().getX() + 0.5F, entry.getKey().getY() + 0.5F, entry.getKey().getZ() + 0.5F, Formatting.DARK_AQUA.getColorValue(), true,0.025F);
                     BaseRender.drawBoxWithLine(entry.getKey(), entry.getKey().add(1, 1, 1), 1, 1, 0, 0.1F, true);
                 } else {
-                    BaseRender.drawString("NC&PP", entry.getKey().getX() + 0.5F, entry.getKey().getY() + 0.5F, entry.getKey().getZ() + 0.5F, Formatting.DARK_GRAY.getColorValue(), true,0.02F);
+                    BaseRender.drawString("NC&PP", entry.getKey().getX() + 0.5F, entry.getKey().getY() + 0.5F, entry.getKey().getZ() + 0.5F, Formatting.DARK_AQUA.getColorValue(), true,0.025F);
                     BaseRender.drawBoxWithLine(entry.getKey(), entry.getKey().add(1, 1, 1), 0.5F, 0.5F, 1, 0.1F, true);
                 }
             }

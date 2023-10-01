@@ -10,11 +10,13 @@
     "AbstractBlockMixin",
     "AbstractMinecartEntityMixin",
     "ChestMinecartEntityMixin",
+    "CommandManagerMixin",
     "ComposterBlockMixin",
     "FurnaceMinecartEntityMixin",
     "HopperBlockEntityMixin",
     "HopperMinecartEntityMixin",
     "NoteBlockMixin",
+    "ServerPlayNetworkHandlerMixin",
     "ServerWorldMixin",
     "ThrownEntityMixin"
   ],
