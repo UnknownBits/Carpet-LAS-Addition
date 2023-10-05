@@ -2,15 +2,14 @@ package lazyalienserver.carpetlasaddition.utils;
 
 import carpet.CarpetServer;
 import net.minecraft.util.WorldSavePath;
+import org.apache.commons.io.IOUtils;
 
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.nio.file.Files;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.List;
 
 public class FileUtils {
     public static Path getPath() {
@@ -26,7 +25,8 @@ public class FileUtils {
 
     public static void writeFile(Path path, ArrayList<String> line){
         try {
-            BufferedWriter out= new BufferedWriter(new FileWriter(path.toFile(),true));
+            //new OutputStreamWriter(new FileOutputStream(new File(path.toUri())), StandardCharsets.UTF_8)
+            BufferedWriter out= new BufferedWriter(new FileWriter(path.toFile(), StandardCharsets.UTF_8, true));
             for (String l:line) {
                 out.write(l);
                 out.newLine();
@@ -43,7 +43,25 @@ public class FileUtils {
 
     }
 
-    private void check(){
-        File file=new File(getPath().getParent().toUri());
+    public static List<String> ResourceFilesList(String path) {
+
+        try (InputStream inputStream=FileUtils.class.getClassLoader().getResourceAsStream(path)){
+            List<String> flieList= IOUtils.readLines(inputStream,StandardCharsets.UTF_8);
+            return flieList;
+        }
+        catch (IOException ioException){
+            LASLogUtils.error("LASResource : getResourceFilesList"+ioException);
+        }
+        finally {
+        }
+
+        /*
+        File file=new File(path.toUri());
+        if (file.isDirectory()) {
+            return file.listFiles();
+        } else {
+            LASLogUtils.warn("filesList:It's a File :"+path.toUri());
+        }*/
+        return null;
     }
 }

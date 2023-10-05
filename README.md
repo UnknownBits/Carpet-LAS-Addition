@@ -1,4 +1,5 @@
 # Carpet-LAS-Addition
+>*ps:前置要Carpet 和 FabricAPI*
 ## **功能[预期]**
 - [ ] ~~显示生物存活时间~~
 - [ ] 显示物品血量

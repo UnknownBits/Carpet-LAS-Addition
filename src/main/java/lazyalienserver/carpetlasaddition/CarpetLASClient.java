@@ -1,29 +1,30 @@
 package lazyalienserver.carpetlasaddition;
 
 import com.mojang.brigadier.CommandDispatcher;
-import lazyalienserver.carpetlasaddition.commands.Client.BinaryCommand;
-import lazyalienserver.carpetlasaddition.commands.Client.CalculateCommand;
-import lazyalienserver.carpetlasaddition.commands.Client.CalcPearlCommand;
-import lazyalienserver.carpetlasaddition.commands.Client.SetRenderDistanceCommand;
-import lazyalienserver.carpetlasaddition.commands.Client.DecimalCommand;
+import lazyalienserver.carpetlasaddition.commands.Client.*;
 import lazyalienserver.carpetlasaddition.commands.TestCommand;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.command.v1.ClientCommandManager;
 import net.fabricmc.fabric.api.client.command.v1.FabricClientCommandSource;
+import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.text.Text;
 
 @Environment(EnvType.CLIENT)
 public class CarpetLASClient implements ClientModInitializer {
-
     @Override
     public void onInitializeClient() {
         registerCommand(ClientCommandManager.DISPATCHER);
     }
 
+
     public static void registerCommand(CommandDispatcher<FabricClientCommandSource> dispatcher){
+        //LAS
+        LazyAlienServerCommand.register(dispatcher);
+
         //Calc
         BinaryCommand.register(dispatcher);
         DecimalCommand.register(dispatcher);

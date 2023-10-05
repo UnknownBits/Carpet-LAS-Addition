@@ -1,0 +1,19 @@
+{
+  "LAS.info.title": "Lazy Alien Server",
+  "LAS.info.base": "Lazy Alien Server, also called LAS for short, is a Minecraft server for researching techniques.",
+  "LAS.info.purpose": "Our Purpose:Unwavering determination, enduring and enduring",
+  "LAS.info.website": "website",
+
+  "CLA.info.about": "       about CLA",
+  "CLA.info.author": "author: Fanzhitianyu",
+  "CLA.info.helper": "helper: Abxl_lly ———— Partial functions and pie painting",
+  "CLA.info.icon_helper": "helper: yizhi_jiyan_ ———— Icon provided for CLA",
+
+  "Record.CommandBlock.REDSTONE": "REDSTONE",
+  "Record.CommandBlock.AUTO": "AUTO",
+  "Record.CommandBlock.SEQUENCE": "SEQUENCE",
+  "Record.CommandBlock.isConditional": "Conditional : yes",
+  "Record.CommandBlock.noConditional": "Conditional : no",
+  "Record.CommandBlock.isAlwaysActive": "AlwaysActive : yes",
+  "Record.CommandBlock.noAlwaysActive": "AlwaysActive : no"
+}
