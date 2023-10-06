@@ -8,10 +8,7 @@ import lazyalienserver.carpetlasaddition.logging.LoggerRegistry;
 import lazyalienserver.carpetlasaddition.network.ServerNetworkHandler;
 import lazyalienserver.carpetlasaddition.records.Record;
 import lazyalienserver.carpetlasaddition.records.RecordList;
-import lazyalienserver.carpetlasaddition.utils.CarpetLASAdditionTranslations;
-import lazyalienserver.carpetlasaddition.utils.FileUtils;
-import lazyalienserver.carpetlasaddition.utils.LASLogUtils;
-import lazyalienserver.carpetlasaddition.utils.LASResource;
+import lazyalienserver.carpetlasaddition.utils.*;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
 import net.minecraft.server.MinecraftServer;
@@ -60,6 +57,7 @@ public class CarpetLASServer implements ModInitializer,CarpetExtension {
     }
     @Override
     public void onServerLoaded(MinecraftServer server){
+        DateTimeUtils.initDayScheduleEvent();
         Record.registerRecords();
         createdir();
         LASResource.loadLASResource();

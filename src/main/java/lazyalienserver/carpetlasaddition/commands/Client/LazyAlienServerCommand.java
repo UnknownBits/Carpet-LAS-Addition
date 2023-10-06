@@ -7,11 +7,8 @@ import com.mojang.brigadier.context.CommandContext;
 import lazyalienserver.carpetlasaddition.utils.FileUtils;
 import lazyalienserver.carpetlasaddition.utils.LASResource;
 import net.fabricmc.fabric.api.client.command.v1.FabricClientCommandSource;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.text.*;
 import net.minecraft.util.Formatting;
-import net.minecraft.util.Identifier;
 
 import java.util.ArrayList;
 
@@ -26,7 +23,7 @@ public class LazyAlienServerCommand {
     }
 
     private static void registerLang(CommandDispatcher<FabricClientCommandSource> dispatcher){
-        for (String file: FileUtils.ResourceFilesList("assets/carpet-las-addition/LAS/lang")){
+        for (String file: FileUtils.getResourceFiles("assets/carpet-las-addition/LAS/lang")){
             String lang=file.split(".json$")[0];
             dispatcher.register(literal("LAS").then(literal("lang").then(literal(lang).executes(c->setLASlang(lang)))));
         }
@@ -50,7 +47,6 @@ public class LazyAlienServerCommand {
         info.clear();
         info.add(Messenger.s("lang:","b"));
         info.add(Messenger.s(LASResource.lang,"ibc"));
-        //Messenger.send(context.getSource(),info);
         Messenger.send(context.getSource().getPlayer(),info);
         return Command.SINGLE_SUCCESS;
     }
@@ -64,7 +60,7 @@ public class LazyAlienServerCommand {
     private static Integer aboutMod(CommandContext<FabricClientCommandSource> context){
         info.clear();
         BaseText baseText=Messenger.s(LASResource.getLASTranslationsResource("CLA.info.about"));
-        baseText.setStyle(Style.EMPTY.withBold(true).withColor(Formatting.LIGHT_PURPLE));
+        baseText.setStyle(Style.EMPTY.withBold(true).withColor(Formatting.LIGHT_PURPLE).withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT,Text.of("github"))).withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL,"https://github.com/UnknownBits/Carpet-LAS-Addition")));
         info.add(baseText);
         info.add(Messenger.s(LASResource.getLASTranslationsResource("CLA.info.author")));
         info.add(Messenger.s(LASResource.getLASTranslationsResource("CLA.info.helper")));

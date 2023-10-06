@@ -5,18 +5,12 @@ import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.context.CommandContext;
 import lazyalienserver.carpetlasaddition.utils.FileUtils;
-import lazyalienserver.carpetlasaddition.utils.LASLogUtils;
 import lazyalienserver.carpetlasaddition.utils.LASResource;
-import net.fabricmc.fabric.api.client.command.v1.FabricClientCommandSource;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.text.*;
 import net.minecraft.util.Formatting;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import static net.minecraft.server.command.CommandManager.literal;
 public class LazyAlienServerCommand {
@@ -28,7 +22,7 @@ public class LazyAlienServerCommand {
     }
 
     private static void registerLang(CommandDispatcher<ServerCommandSource> dispatcher){
-        for (String file: FileUtils.ResourceFilesList("assets/carpet-las-addition/LAS/lang")){
+        for (String file: FileUtils.getResourceFiles("assets/carpet-las-addition/LAS/lang")){
             String lang=file.split(".json$")[0];
             dispatcher.register(literal("LAS").then(literal("lang").then(literal(lang).executes(c->setLASlang(lang)))));
         }

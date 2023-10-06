@@ -10,6 +10,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class FileUtils {
     public static Path getPath() {
@@ -39,29 +40,27 @@ public class FileUtils {
 
     }
 
-    private static void createFile(Path path){
-
-    }
-
-    public static List<String> ResourceFilesList(String path) {
-
-        try (InputStream inputStream=FileUtils.class.getClassLoader().getResourceAsStream(path)){
-            List<String> flieList= IOUtils.readLines(inputStream,StandardCharsets.UTF_8);
-            return flieList;
+    public static Stream<String> readFile(Path path){
+        try {
+            BufferedReader in=new BufferedReader(new FileReader(path.toFile(),StandardCharsets.UTF_8));
+            //in.close();
+            return in.lines();
         }
         catch (IOException ioException){
-            LASLogUtils.error("LASResource : getResourceFilesList"+ioException);
+            LASLogUtils.error("[CLA]:"+"failed read " + path.getFileName(), ioException);
         }
-        finally {
-        }
+        return null;
+    }
 
-        /*
-        File file=new File(path.toUri());
-        if (file.isDirectory()) {
-            return file.listFiles();
-        } else {
-            LASLogUtils.warn("filesList:It's a File :"+path.toUri());
-        }*/
+
+    public static ArrayList<String> getResourceFiles(String path) {
+        try (InputStream inputStream=FileUtils.class.getClassLoader().getResourceAsStream(path)){
+            List<String> fileList= IOUtils.readLines(inputStream,StandardCharsets.UTF_8);
+            return new ArrayList<>(fileList);
+        }
+        catch (IOException ioException){
+            LASLogUtils.error("[CLA]: LASResource -> getResourceFiles"+ioException);
+        }
         return null;
     }
 }

@@ -5,9 +5,6 @@ import lazyalienserver.carpetlasaddition.records.RecordsList.CommandRecord;
 import lazyalienserver.carpetlasaddition.utils.DateTimeUtils;
 import lazyalienserver.carpetlasaddition.utils.FileUtils;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -20,9 +17,13 @@ public class RecordList {
         return record;
     }
     public static void saveAllRecord(){
-        for (Map.Entry<String,Record> entry:recordList.entrySet()){
-            FileUtils.writeFile(entry.getValue().getRecordsDir().resolve(DateTimeUtils.getNowDate()+".log"),entry.getValue().getRecord());
+        if (!recordList.isEmpty()){
+            for (Map.Entry<String,Record> entry:recordList.entrySet()){
+                FileUtils.writeFile(entry.getValue().getRecordsDir().resolve(DateTimeUtils.getNowDate()+".log"),entry.getValue().getRecord());
+            }
         }
     }
-    public static void load(){}
+    public static void load(){
+        DateTimeUtils.addDayScheduleEvent(RecordList::saveAllRecord);
+    }
 }
