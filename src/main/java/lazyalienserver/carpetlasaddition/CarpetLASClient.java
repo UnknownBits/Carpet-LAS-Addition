@@ -3,21 +3,24 @@ package lazyalienserver.carpetlasaddition;
 import com.mojang.brigadier.CommandDispatcher;
 import lazyalienserver.carpetlasaddition.commands.Client.*;
 import lazyalienserver.carpetlasaddition.commands.TestCommand;
+import lazyalienserver.carpetlasaddition.utils.CarpetLASAdditionTranslations;
+import lazyalienserver.carpetlasaddition.utils.LASResource;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.command.v1.ClientCommandManager;
 import net.fabricmc.fabric.api.client.command.v1.FabricClientCommandSource;
-import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.text.Text;
 
 @Environment(EnvType.CLIENT)
 public class CarpetLASClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
+        loadLASResource();
         registerCommand(ClientCommandManager.DISPATCHER);
+    }
+
+    private static void loadLASResource(){
+        LASResource.LASTranslationsResource= CarpetLASAdditionTranslations.getLASResource(LASResource.lang);
     }
 
 
