@@ -3,10 +3,7 @@ package lazyalienserver.carpetlasaddition.mixin;
 import lazyalienserver.carpetlasaddition.CarpetLASSetting;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.vehicle.AbstractMinecartEntity;
-import net.minecraft.entity.vehicle.ChestMinecartEntity;
-import net.minecraft.entity.vehicle.FurnaceMinecartEntity;
-import net.minecraft.entity.vehicle.HopperMinecartEntity;
+import net.minecraft.entity.vehicle.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.world.GameRules;
@@ -28,7 +25,10 @@ public abstract class AbstractMinecartEntityMixin {
         if (abstractMinecartEntity.world.getGameRules().getBoolean(GameRules.DO_ENTITY_DROPS)) {
             ItemStack itemStack =null;
             if(CarpetLASSetting.MinecartDropModify) {
-                if (abstractMinecartEntity instanceof HopperMinecartEntity) {
+                if (abstractMinecartEntity instanceof MinecartEntity){
+                    itemStack=new ItemStack(Items.MINECART);
+                }
+                else if (abstractMinecartEntity instanceof HopperMinecartEntity) {
                     itemStack = new ItemStack(Items.HOPPER_MINECART);
                 } else if (abstractMinecartEntity instanceof ChestMinecartEntity) {
                     itemStack = new ItemStack(Items.CHEST_MINECART);

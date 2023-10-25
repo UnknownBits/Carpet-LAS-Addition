@@ -21,6 +21,7 @@ public class CarpetLASClient implements ClientModInitializer {
 
     private static void loadLASResource(){
         LASResource.LASTranslationsResource= CarpetLASAdditionTranslations.getLASResource(LASResource.lang);
+
     }
 
 
