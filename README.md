@@ -1,5 +1,12 @@
 # Carpet-LAS-Addition
 >*ps:前置要Carpet 和 FabricAPI*
+>
+
+## 基本信息
+**作者**：[Fanzhitianyu](https://space.bilibili.com/3461569335790303)   
+**隶属**：[LazyAlienServer](https://lazyalienserver.top/) -- 计算机技术探究小组   
+**初衷**：为辅助红石机器设计，探究红石技术而生。
+
 ## **功能[预期]**
 - [ ] ~~显示生物存活时间~~
 - [ ] 显示物品血量

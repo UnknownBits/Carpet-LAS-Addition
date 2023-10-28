@@ -1,12 +1,9 @@
 package lazyalienserver.carpetlasaddition.commands;
 
 import com.mojang.brigadier.CommandDispatcher;
-import lazyalienserver.carpetlasaddition.logging.Loggers.BlockUpdateLogger.BlockUpdateLogger;
 import lazyalienserver.carpetlasaddition.records.RecordList;
 import lazyalienserver.carpetlasaddition.utils.LASLogUtils;
 import net.fabricmc.fabric.api.client.command.v1.FabricClientCommandSource;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.text.Text;
 
 import static net.fabricmc.fabric.api.client.command.v1.ClientCommandManager.literal;
 
