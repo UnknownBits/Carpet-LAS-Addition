@@ -37,7 +37,6 @@ public class LazyAlienServerCommand {
         info.add(Messenger.s(LASResource.getLASTranslationsResource("LAS.info.base")));
         info.add(Messenger.s(LASResource.getLASTranslationsResource("LAS.info.purpose"),"b"));
 
-        //Messenger.send(context.getSource(),info);
         Messenger.send(context.getSource().getPlayer(),info);
 
         return Command.SINGLE_SUCCESS;

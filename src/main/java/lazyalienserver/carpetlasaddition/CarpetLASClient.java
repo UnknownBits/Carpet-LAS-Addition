@@ -3,6 +3,7 @@ package lazyalienserver.carpetlasaddition;
 import com.mojang.brigadier.CommandDispatcher;
 import lazyalienserver.carpetlasaddition.commands.Client.*;
 import lazyalienserver.carpetlasaddition.commands.TestCommand;
+import lazyalienserver.carpetlasaddition.network.ClientNetworkHandler;
 import lazyalienserver.carpetlasaddition.utils.CarpetLASAdditionTranslations;
 import lazyalienserver.carpetlasaddition.utils.LASResource;
 import net.fabricmc.api.ClientModInitializer;
@@ -15,13 +16,16 @@ import net.fabricmc.fabric.api.client.command.v1.FabricClientCommandSource;
 public class CarpetLASClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
+        ClientNetwork();
         loadLASResource();
         registerCommand(ClientCommandManager.DISPATCHER);
     }
 
+    public static void ClientNetwork(){
+        ClientNetworkHandler.loadServer();
+    }
     private static void loadLASResource(){
-        LASResource.LASTranslationsResource= CarpetLASAdditionTranslations.getLASResource(LASResource.lang);
-
+        LASResource.LASTranslationsResource = CarpetLASAdditionTranslations.getLASResource(LASResource.lang);
     }
 
 

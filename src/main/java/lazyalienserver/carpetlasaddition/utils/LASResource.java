@@ -22,7 +22,11 @@ public class LASResource {
     }
 
     public static String getLASTranslationsResource(String key) {
-        return LASTranslationsResource.get(key);
+        return LASTranslationsResource.get(key)!=null?LASTranslationsResource.get(key):"null";
+    }
+
+    public static String getLASConfig(String key) {
+        return LASConfig.get(key)!=null?LASConfig.get(key):"null";
     }
 
     private static void getLASConfig(){

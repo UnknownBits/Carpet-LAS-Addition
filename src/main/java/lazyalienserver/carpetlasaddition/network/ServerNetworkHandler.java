@@ -1,29 +1,32 @@
 package lazyalienserver.carpetlasaddition.network;
 
-import lazyalienserver.carpetlasaddition.utils.LASLogUtils;
-import net.fabricmc.fabric.api.networking.v1.PacketSender;
-import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.network.ServerPlayNetworkHandler;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.util.Identifier;
+import lazyalienserver.carpetlasaddition.logging.Loggers.BlockUpdateLogger.BlockUpdateLogger;
+import lazyalienserver.carpetlasaddition.logging.Loggers.HopperCoolTimeLogger.HopperCoolTimeLogger;
+import java.util.ArrayList;
 
 public class ServerNetworkHandler {
+    public static final ArrayList<Runnable> ServerPacketSender = new ArrayList<>();
 
-    public static void send(ServerPlayerEntity player, Identifier identifier, PacketByteBuf buf){
-        ServerPlayNetworking.send(player,identifier,buf);
-    }
     public static void loadServer(){
-        LASLogUtils.log("The server of Lazy-Alien-Server starts running.");
-        registerGlobalReceiver();
+        ServerNetworkHandlerRegister();
     }
 
-    public static void registerGlobalReceiver(){
-        //ServerPlayNetworking.registerGlobalReceiver(NetWorkPacket.HopperCoolTime, ServerNetworkHandler::serverNetWork);
+    private static void ServerNetworkHandlerRegister(){
+
     }
 
-    public static void serverNetWork(MinecraftServer server, ServerPlayerEntity player, ServerPlayNetworkHandler handler, PacketByteBuf buffer, PacketSender sender){
+    public static void sendPacket(){
+        for (Runnable sendPacket: ServerPacketSender){
+            sendPacket.run();
+        }
+    }
 
+    public static void registerServerPacketSender(Runnable sender){
+        ServerPacketSender.add(sender);
+    }
+
+    static {
+        registerServerPacketSender(HopperCoolTimeLogger::sendHopperCoolTime);
+        registerServerPacketSender(BlockUpdateLogger::sendBlockUpdate);
     }
 }

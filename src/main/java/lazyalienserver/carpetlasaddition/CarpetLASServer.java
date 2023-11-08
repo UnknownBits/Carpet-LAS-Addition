@@ -32,9 +32,9 @@ public class CarpetLASServer implements ModInitializer,CarpetExtension {
 
     @Override
     public void onInitialize() {
-        CarpetLASServer.ServerNetWork();
         CarpetLASServer.loadExtension();
         CommandRegistrationCallback.EVENT.register(CarpetLASServer::registerLASCommands);
+        CarpetLASServer.ServerNetWork();
     }
 
     public static void ServerNetWork(){
@@ -54,6 +54,7 @@ public class CarpetLASServer implements ModInitializer,CarpetExtension {
     public void onGameStarted(){
         LASLogUtils.log("Carpet-LAS-Addition loaded.");
         CarpetServer.settingsManager.parseSettingsClass(CarpetLASSetting.class);
+
     }
     @Override
     public void onServerLoaded(MinecraftServer server){
@@ -86,5 +87,9 @@ public class CarpetLASServer implements ModInitializer,CarpetExtension {
     @Override
     public void onTick(MinecraftServer server){
 
+    }
+
+    public static void tick(){
+        ServerNetworkHandler.sendPacket();
     }
 }

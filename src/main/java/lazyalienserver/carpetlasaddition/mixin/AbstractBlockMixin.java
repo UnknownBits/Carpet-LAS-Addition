@@ -1,9 +1,7 @@
 package lazyalienserver.carpetlasaddition.mixin;
 
-import carpet.CarpetServer;
-import carpet.utils.Messenger;
-import lazyalienserver.carpetlasaddition.logging.LoggerRegistry;
 import lazyalienserver.carpetlasaddition.logging.Loggers.BlockUpdateLogger.BlockUpdateLogger;
+import lazyalienserver.carpetlasaddition.logging.Loggers.BlockUpdateLogger.UpdateType;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -22,17 +20,18 @@ public class AbstractBlockMixin {
     @Inject(at=@At("HEAD"),method = "getStateForNeighborUpdate")
     //PP Update
     public void getStateForNeighborUpdate(Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos, CallbackInfoReturnable<BlockState> cir){
-        if (LoggerRegistry.__blockUpdate) {
+            World world1 = (World) world;
             //Messenger.print_server_message(CarpetServer.minecraft_server, Messenger.c("  " + "PP:", Messenger.tp("Update", pos)));
-            BlockUpdateLogger.PPUpdate(pos);
-        }
+            BlockUpdateLogger.addBlockUpdate(world1.getRegistryKey().getValue(),new BlockPos(pos), UpdateType.PP);
+            //BlockUpdateLogger.PPUpdate(pos);
+
     }
     @Inject(at=@At("HEAD"),method = "neighborUpdate")
     //NC Update
     public void neighborUpdate(World world, BlockPos pos, Block block, BlockPos posFrom, boolean notify, CallbackInfo ci){
-        if (LoggerRegistry.__blockUpdate) {
             //Messenger.print_server_message(CarpetServer.minecraft_server, Messenger.c("  " + "NC:", Messenger.tp("Update", pos)));
-            BlockUpdateLogger.NCUpdate(pos);
-        }
+            BlockUpdateLogger.addBlockUpdate(world.getRegistryKey().getValue(),pos, UpdateType.NC);
+            //BlockUpdateLogger.NCUpdate(pos);
+
     }
 }

@@ -20,7 +20,7 @@ public class ServerPlayNetworkHandlerMixin {
 
     @Inject(at = @At(value = "INVOKE", target = "Lnet/minecraft/server/network/ServerPlayerEntity;sendSystemMessage(Lnet/minecraft/text/Text;Ljava/util/UUID;)V"), method = "onUpdateCommandBlock")
     public void onUpdateCommandBlock(UpdateCommandBlockC2SPacket packet, CallbackInfo ci) {
-        if (LASResource.LASConfig.get("CommandBlockRecord").equals("true")) {
+        if (LASResource.getLASConfig("CommandBlockRecord").equals("true")) {
             switch (packet.getType()) {
                 case REDSTONE -> {
                     RecordList.commandBlockRecord.addRecord("[Time:" + DateTimeUtils.getNowTime() + "]: { Player:" + this.player.getName().asString() + " | " + packet.getBlockPos().toString() + " | Command:" + packet.getCommand() + " | Type: " + LASResource.getLASTranslationsResource("Record.CommandBlock.REDSTONE") + checkUpdateCommandBlock(packet) + "}");
