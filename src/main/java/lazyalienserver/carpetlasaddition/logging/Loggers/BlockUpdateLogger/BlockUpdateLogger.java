@@ -30,6 +30,7 @@ public class BlockUpdateLogger {
     }
 
     public static void sendBlockUpdate() {
+        //TODO 实际渲染有偏差，可能与锂钠有关系
         for (Map.Entry<String, String> Player : RenderLogger.getRenderLogger("blockUpdate").getSubscribedOnlinePlayers().entrySet()) {
             ServerPlayerEntity player = CarpetServer.minecraft_server.getPlayerManager().getPlayer(Player.getKey());
             if (player != null) {

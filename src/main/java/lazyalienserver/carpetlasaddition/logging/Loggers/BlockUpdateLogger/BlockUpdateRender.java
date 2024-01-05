@@ -22,6 +22,8 @@ public class BlockUpdateRender {
     }
 
     public static void render(MatrixStack matrices) {
+
+        //TODO 实际渲染有偏差，可能与锂钠有关系
         for (Map.Entry<BlockPos, Integer> entry : blockUpdateMap.entrySet()) {
             if (entry.getValue() == UpdateType.NC.s) {
                 BaseRender.drawString("NC", entry.getKey().getX() + 0.5F, entry.getKey().getY() + 0.5F, entry.getKey().getZ() + 0.5F, Formatting.DARK_AQUA.getColorValue(), true, 0.025F);

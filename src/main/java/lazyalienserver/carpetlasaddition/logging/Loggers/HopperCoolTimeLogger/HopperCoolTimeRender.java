@@ -23,6 +23,8 @@ public class HopperCoolTimeRender {
     }
 
     public static void render(MatrixStack matrices) {
+
+        //TODO 实际渲染有偏差，可能与锂钠有关系
         BlockPos pos;
         for (Map.Entry<BlockPos, Integer> entry : coolTimeMap.entrySet()) {
             pos = entry.getKey();

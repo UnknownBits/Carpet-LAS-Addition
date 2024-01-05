@@ -18,7 +18,8 @@
     "NoteBlockMixin",
     "ServerPlayNetworkHandlerMixin",
     "ServerWorldMixin",
-    "ThrownEntityMixin"
+    "ThrownEntityMixin",
+    "WetSpongeBlockMixin"
   ],
   "client": [
     "WorldRendererMixin"
