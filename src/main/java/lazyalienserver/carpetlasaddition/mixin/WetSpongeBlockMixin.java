@@ -22,14 +22,15 @@ public class WetSpongeBlockMixin implements Fertilizable {
     }
     @Unique
     private static boolean haveWaterAround(World world, BlockPos pos) {
-        //TODO 纵向检测
         for (int i = -1; i <= 1; i++) {
             for (int j = -1; j <= 1; j++) {
-                if ((i == 0 && j == 0)||i*j!=0) {
-                    continue;
-                }
-                if (world.getBlockState(pos.add(i, 0, j)).getBlock().equals(Blocks.WATER)) {
-                    return true;
+                for(int k = -1; k <= 1; k++){
+                    if ((i == 0 && j == 0&&k==0)||i*j!=0||i*k!=0||j*k!=0) {
+                        continue;
+                    }
+                    if (world.getBlockState(pos.add(i, k, j)).getBlock().equals(Blocks.WATER)) {
+                        return true;
+                    }
                 }
             }
         }
@@ -43,18 +44,21 @@ public class WetSpongeBlockMixin implements Fertilizable {
 
     @Override
     public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
-        //TODO 纵向生成
         if(CarpetLASSetting.SpongeRespawn){
-            for (int i = -1; i <= 1; i++) {
-                for (int j = -1; j <= 1; j++) {
-                    if ((i == 0 && j == 0)||i*j!=0) {
-                        continue;
-                    }
-                    if (world.getBlockState(pos.add(i, 0, j)).getBlock().equals(Blocks.WATER)&&random.nextFloat()>0.99) {
-                        world.setBlockState(pos.add(i, 0, j), Blocks.WET_SPONGE.getDefaultState());
-                        return;
-                    }
-                }
+            switch (random.nextInt(6)){
+                case 0:if (world.getBlockState(pos.add(1,0,0)).getBlock().equals(Blocks.WATER)&&random.nextFloat()>0.90)
+                    world.setBlockState(pos.add(1,0,0), Blocks.WET_SPONGE.getDefaultState());break;
+                case 1:if (world.getBlockState(pos.add(-1,0,0)).getBlock().equals(Blocks.WATER)&&random.nextFloat()>0.90)
+                    world.setBlockState(pos.add(-1,0,0), Blocks.WET_SPONGE.getDefaultState());break;
+                case 2:if (world.getBlockState(pos.add(0,0,1)).getBlock().equals(Blocks.WATER)&&random.nextFloat()>0.90)
+                    world.setBlockState(pos.add(0,0,1), Blocks.WET_SPONGE.getDefaultState());break;
+                case 3:if (world.getBlockState(pos.add(0,0,-1)).getBlock().equals(Blocks.WATER)&&random.nextFloat()>0.90)
+                    world.setBlockState(pos.add(0,0,-1), Blocks.WET_SPONGE.getDefaultState());break;
+                case 4:if (world.getBlockState(pos.add(0,1,0)).getBlock().equals(Blocks.WATER)&&random.nextFloat()>0.90)
+                    world.setBlockState(pos.add(0,1,0), Blocks.WET_SPONGE.getDefaultState());break;
+                case 5:if (world.getBlockState(pos.add(0,-1,0)).getBlock().equals(Blocks.WATER)&&random.nextFloat()>0.90)
+                    world.setBlockState(pos.add(0,-1,0), Blocks.WET_SPONGE.getDefaultState());break;
+                default:break;
             }
         }
     }
