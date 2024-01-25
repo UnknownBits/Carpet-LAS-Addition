@@ -17,21 +17,16 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(AbstractBlock.AbstractBlockState.class)
 public class AbstractBlockMixin {
-    @Inject(at=@At("HEAD"),method = "getStateForNeighborUpdate")
-    //PP Update
+    @Inject(at=@At("HEAD"),method = "getStateForNeighborUpdate")    //PP Update
     public void getStateForNeighborUpdate(Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos, CallbackInfoReturnable<BlockState> cir){
-            World world1 = (World) world;
-            //Messenger.print_server_message(CarpetServer.minecraft_server, Messenger.c("  " + "PP:", Messenger.tp("Update", pos)));
-            BlockUpdateLogger.addBlockUpdate(world1.getRegistryKey().getValue(),new BlockPos(pos), UpdateType.PP);
-            //BlockUpdateLogger.PPUpdate(pos);
-
+            if(world instanceof World){
+                //Messenger.print_server_message(CarpetServer.minecraft_server, Messenger.c("  " + "PP:", Messenger.tp("Update", pos)));
+                BlockUpdateLogger.addBlockUpdate(((World)world).getRegistryKey().getValue(),new BlockPos(pos), UpdateType.PP);
+            }      //BlockUpdateLogger.PPUpdate(pos);
     }
-    @Inject(at=@At("HEAD"),method = "neighborUpdate")
-    //NC Update
+    @Inject(at=@At("HEAD"),method = "neighborUpdate")    //NC Update
     public void neighborUpdate(World world, BlockPos pos, Block block, BlockPos posFrom, boolean notify, CallbackInfo ci){
             //Messenger.print_server_message(CarpetServer.minecraft_server, Messenger.c("  " + "NC:", Messenger.tp("Update", pos)));
             BlockUpdateLogger.addBlockUpdate(world.getRegistryKey().getValue(),pos, UpdateType.NC);
-            //BlockUpdateLogger.NCUpdate(pos);
-
-    }
+    }    //BlockUpdateLogger.NCUpdate(pos);
 }

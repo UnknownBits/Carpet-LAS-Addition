@@ -5,6 +5,7 @@ import lazyalienserver.carpetlasaddition.logging.LoggerRegistry;
 import lazyalienserver.carpetlasaddition.logging.Loggers.RenderLogger;
 import lazyalienserver.carpetlasaddition.network.NetWorkPacket;
 import lazyalienserver.carpetlasaddition.render.BaseRender;
+import lazyalienserver.carpetlasaddition.utils.LASLogUtils;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Pair;
@@ -22,6 +23,7 @@ public class BlockUpdateLogger {
     public static void addBlockUpdate(Identifier world, BlockPos pos, UpdateType type) {
         if (LoggerRegistry.__blockUpdate) {
             if(BlockUpdate.get(new Pair<>(world, pos)) != type){
+                LASLogUtils.log("addBlockUpdate");
                 if(BlockUpdate.get(new Pair<>(world, pos))!=null){
                     BlockUpdate.put(new Pair<>(world, pos),UpdateType.NC_And_PP);
                 }else BlockUpdate.put(new Pair<>(world, pos),type);
