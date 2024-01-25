@@ -10,7 +10,7 @@ public class LoggerRegistry {
     public static boolean __blockUpdate = false;
     public static void registerLoggers(){
         LoggerRegister(createRenderLogger("hopperCoolTime",null,null));
-        LoggerRegister(createRenderLogger("blockUpdate",null,null));
+        //LoggerRegister(createRenderLogger("blockUpdate",null,null));
     }
     private static void LoggerRegister(Logger logger){
         carpet.logging.LoggerRegistry.registerLogger(logger.getLogName(),logger);
