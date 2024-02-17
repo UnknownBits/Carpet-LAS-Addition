@@ -1,5 +1,6 @@
 package lazyalienserver.carpetlasaddition.commands.Server;
 
+import carpet.CarpetServer;
 import carpet.utils.Messenger;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
@@ -15,9 +16,13 @@ import java.util.ArrayList;
 import static net.minecraft.server.command.CommandManager.literal;
 public class LazyAlienServerCommand {
     public static ArrayList<BaseText> info=new ArrayList<>();
+    public static Boolean CLALog =false;
 
     public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
-        dispatcher.register(literal("LAS").executes(LazyAlienServerCommand::LASInfo).then(literal("lang").executes(LazyAlienServerCommand::LASlang)).then(literal("about").executes(LazyAlienServerCommand::aboutMod)));
+        dispatcher.register(literal("LAS").executes(LazyAlienServerCommand::LASInfo)
+                .then(literal("lang").executes(LazyAlienServerCommand::LASlang))
+                .then(literal("about").executes(LazyAlienServerCommand::aboutMod))
+                .then(literal("log").requires(sources->sources.hasPermissionLevel(2)).executes(LazyAlienServerCommand::setLog)));
         registerLang(dispatcher);
     }
 
@@ -64,6 +69,15 @@ public class LazyAlienServerCommand {
         info.add(Messenger.s(LASResource.getLASTranslationsResource("CLA.info.helper")));
         info.add(Messenger.s(LASResource.getLASTranslationsResource("CLA.info.icon_helper")));
         Messenger.send(context.getSource(),info);
+        return Command.SINGLE_SUCCESS;
+    }
+
+    private static Integer setLog(CommandContext<ServerCommandSource> context){
+        CLALog =!CLALog;
+        info.clear();
+        info.add(Messenger.s(CLALog ?LASResource.getLASTranslationsResource("CLA.setting.LogEnabled"):LASResource.getLASTranslationsResource("CLA.setting.LogDisabled")));
+        Messenger.send(context.getSource(),info);
+        //Messenger.print_server_message(CarpetServer.minecraft_server, (CLALog ?LASResource.getLASTranslationsResource("CLA.setting.LogEnabled"):LASResource.getLASTranslationsResource("CLA.setting.LogDisabled")));
         return Command.SINGLE_SUCCESS;
     }
 }

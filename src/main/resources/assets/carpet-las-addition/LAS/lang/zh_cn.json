@@ -9,6 +9,9 @@
   "CLA.info.helper": "协助: Abxl_lly ———— 部分功能和画饼",
   "CLA.info.icon_helper": "协助: yizhi_jiyan_ ———— 提供了CLA的图标",
 
+  "CLA.setting.LogEnabled": "CLA Log 已启用",
+  "CLA.setting.LogDisabled": "CLA Log 已禁用",
+
   "Record.CommandBlock.REDSTONE": "脉冲",
   "Record.CommandBlock.AUTO": "循环",
   "Record.CommandBlock.SEQUENCE": "连锁",

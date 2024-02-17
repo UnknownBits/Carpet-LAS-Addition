@@ -22,6 +22,8 @@ public class CommandCheckHelper {
         COMMANDS.put(command, runnable);
     }
 
+
+
     static {
         CommandCheckHelper.registerCheckCommand("/log blockUpdate", BlockUpdateLogger::clearClient);
         CommandCheckHelper.registerCheckCommand("/log hopperCoolTime", HopperCoolTimeLogger::clearClient);

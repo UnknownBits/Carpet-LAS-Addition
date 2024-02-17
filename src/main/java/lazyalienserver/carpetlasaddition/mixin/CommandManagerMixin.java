@@ -18,7 +18,7 @@ import java.util.Objects;
 public class CommandManagerMixin {
     @Inject(at = @At("HEAD"), method = "execute")
     public void execute(ServerCommandSource commandSource, String command, CallbackInfoReturnable<Integer> cir) {
-        LASLogUtils.log("Source"+commandSource.getName());
+        //LASLogUtils.log("Source"+commandSource.getName());
         if(!Objects.equals(commandSource.getName(), "@")||Objects.equals(commandSource.getName(), "server")){
             try{
                 CommandCheckHelper.checkCommand(command,commandSource.getPlayer());
