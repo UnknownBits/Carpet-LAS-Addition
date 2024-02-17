@@ -7,18 +7,23 @@ import com.mojang.brigadier.context.CommandContext;
 import lazyalienserver.carpetlasaddition.utils.FileUtils;
 import lazyalienserver.carpetlasaddition.utils.LASResource;
 import net.fabricmc.fabric.api.client.command.v1.FabricClientCommandSource;
+import net.minecraft.server.command.CommandManager;
 import net.minecraft.text.*;
 import net.minecraft.util.Formatting;
 
 import java.util.ArrayList;
 
+import static lazyalienserver.carpetlasaddition.commands.Server.LazyAlienServerCommand.CLALog;
 import static net.fabricmc.fabric.api.client.command.v1.ClientCommandManager.literal;
 
 public class LazyAlienServerCommand {
     public static ArrayList<BaseText> info=new ArrayList<>();
 
     public static void register(CommandDispatcher<FabricClientCommandSource> dispatcher) {
-        dispatcher.register(literal("LAS").executes(LazyAlienServerCommand::LASInfo).then(literal("lang").executes(LazyAlienServerCommand::LASlang)).then(literal("about").executes(LazyAlienServerCommand::aboutMod)));
+        dispatcher.register(literal("LAS").executes(LazyAlienServerCommand::LASInfo)
+                .then(literal("lang").executes(LazyAlienServerCommand::LASlang))
+                .then(literal("about").executes(LazyAlienServerCommand::aboutMod))
+                .then(literal("log").executes(LazyAlienServerCommand::setLog)));
         registerLang(dispatcher);
     }
 
@@ -64,6 +69,14 @@ public class LazyAlienServerCommand {
         info.add(Messenger.s(LASResource.getLASTranslationsResource("CLA.info.author")));
         info.add(Messenger.s(LASResource.getLASTranslationsResource("CLA.info.helper")));
         info.add(Messenger.s(LASResource.getLASTranslationsResource("CLA.info.icon_helper")));
+        Messenger.send(context.getSource().getPlayer(),info);
+        return Command.SINGLE_SUCCESS;
+    }
+
+    private static Integer setLog(CommandContext<FabricClientCommandSource> context){
+        CLALog=!CLALog;
+        info.clear();
+        info.add(Messenger.s(CLALog ?LASResource.getLASTranslationsResource("CLA.setting.LogEnabled"):LASResource.getLASTranslationsResource("CLA.setting.LogDisabled")));
         Messenger.send(context.getSource().getPlayer(),info);
         return Command.SINGLE_SUCCESS;
     }

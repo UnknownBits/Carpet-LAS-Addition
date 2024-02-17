@@ -9,6 +9,9 @@
   "CLA.info.helper": "helper: Abxl_lly ———— Partial functions and pie painting",
   "CLA.info.icon_helper": "helper: yizhi_jiyan_ ———— Icon provided for CLA",
 
+  "CLA.setting.LogEnabled": "CLA Log enabled",
+  "CLA.setting.LogDisabled": "CLA Log disabled",
+
   "Record.CommandBlock.REDSTONE": "REDSTONE",
   "Record.CommandBlock.AUTO": "AUTO",
   "Record.CommandBlock.SEQUENCE": "SEQUENCE",
