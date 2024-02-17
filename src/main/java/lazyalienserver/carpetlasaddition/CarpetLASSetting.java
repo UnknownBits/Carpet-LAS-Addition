@@ -24,9 +24,9 @@ public class CarpetLASSetting {
     public static boolean MinecartDropModify =false;
 
     @Rule(
-            desc = "Use bone_meal on the sponge, the sponge will randomly convert nearby water sources into wet sponges in lukewarm_ocean or warm_ocean",category = {LASAddition,SURVIVAL,FEATURE}
+            desc = "Use bone_meal on the sponge, the sponge will randomly convert nearby water into wet sponges in lukewarm_ocean or warm_ocean",category = {LASAddition,SURVIVAL,FEATURE}
     )
-    public static boolean SpongeRespawn =false;
+    public static boolean SpongeReproduction =false;
 
 
 }

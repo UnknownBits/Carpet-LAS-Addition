@@ -14,6 +14,6 @@
   "rule.MinecartDropModify.name": "矿车掉落机制修改",
   "rule.MinecartDropModify.desc": "将1.18.2版本的矿车掉落机制替换成1.19版本的矿车掉落机制",
 
-  "rule.SpongeRespawn.name": "海绵再生",
-  "rule.SpongeRespawn.desc": "在温水海洋或暖水海洋，对海绵使用骨粉，海绵会随机将附近水源变为湿润海绵"
+  "rule.SpongeReproduction.name": "海绵繁殖",
+  "rule.SpongeReproduction.desc": "在温水海洋或暖水海洋，对海绵使用骨粉，海绵会随机将附近水变为湿润海绵"
 }
