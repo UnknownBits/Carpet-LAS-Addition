@@ -15,4 +15,10 @@ public class CarpetLASSetting {
     @Rule(categories = {"LAS"})
     public static boolean CompostGradeModification=false;
 
+    @Rule(
+            desc = "Use bone_meal on the sponge, the sponge will randomly convert nearby water into wet sponges in lukewarm_ocean or warm_ocean",category = {LASAddition,SURVIVAL,FEATURE}
+    )
+    public static boolean SpongeReproduction =false;
+
+
 }

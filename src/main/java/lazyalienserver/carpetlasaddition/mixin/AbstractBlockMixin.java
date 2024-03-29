@@ -1,9 +1,7 @@
 package lazyalienserver.carpetlasaddition.mixin;
 
-import carpet.CarpetServer;
-import carpet.utils.Messenger;
-import lazyalienserver.carpetlasaddition.logging.LoggerRegistry;
 import lazyalienserver.carpetlasaddition.logging.Loggers.BlockUpdateLogger.BlockUpdateLogger;
+import lazyalienserver.carpetlasaddition.logging.Loggers.BlockUpdateLogger.UpdateType;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -17,22 +15,18 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(AbstractBlock.class)
+@Mixin(AbstractBlock.AbstractBlockState.class)
 public class AbstractBlockMixin {
-    @Inject(at=@At("HEAD"),method = "getStateForNeighborUpdate")
-    //PP Update
-    public void getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos, CallbackInfoReturnable<BlockState> cir){
-        if (LoggerRegistry.__blockUpdate) {
-            //Messenger.print_server_message(CarpetServer.minecraft_server, Messenger.c("  " + "PP:", Messenger.tp("Update", pos)));
-            BlockUpdateLogger.PPUpdate(pos);
-        }
+    @Inject(at=@At("HEAD"),method = "getStateForNeighborUpdate")    //PP Update
+    public void getStateForNeighborUpdate(Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos, CallbackInfoReturnable<BlockState> cir){
+            if(world instanceof World){
+                //Messenger.print_server_message(CarpetServer.minecraft_server, Messenger.c("  " + "PP:", Messenger.tp("Update", pos)));
+                BlockUpdateLogger.addBlockUpdate(((World)world).getRegistryKey().getValue(),new BlockPos(pos), UpdateType.PP);
+            }      //BlockUpdateLogger.PPUpdate(pos);
     }
-    @Inject(at=@At("HEAD"),method = "neighborUpdate")
-    //NC Update
-    public void neighborUpdate(BlockState state, World world, BlockPos pos, Block block, BlockPos fromPos, boolean notify, CallbackInfo ci){
-        if (LoggerRegistry.__blockUpdate) {
+    @Inject(at=@At("HEAD"),method = "neighborUpdate")    //NC Update
+    public void neighborUpdate(World world, BlockPos pos, Block block, BlockPos posFrom, boolean notify, CallbackInfo ci){
             //Messenger.print_server_message(CarpetServer.minecraft_server, Messenger.c("  " + "NC:", Messenger.tp("Update", pos)));
-            BlockUpdateLogger.NCUpdate(pos);
-        }
-    }
+            BlockUpdateLogger.addBlockUpdate(world.getRegistryKey().getValue(),pos, UpdateType.NC);
+    }    //BlockUpdateLogger.NCUpdate(pos);
 }

@@ -1,16 +1,22 @@
 package lazyalienserver.carpetlasaddition.network;
 
-import lazyalienserver.carpetlasaddition.helper.NetWorkHelper;
-import lazyalienserver.carpetlasaddition.logging.Loggers.HopperCoolTimeLogger.HopperCoolTimeLogger;
+import lazyalienserver.carpetlasaddition.logging.Loggers.BlockUpdateLogger.BlockUpdateRender;
+import lazyalienserver.carpetlasaddition.logging.Loggers.HopperCoolTimeLogger.HopperCoolTimeRender;
+import lazyalienserver.carpetlasaddition.logging.Loggers.RenderList;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
-import net.fabricmc.fabric.api.client.networking.v1.*;
 
 
 public class ClientNetworkHandler {
-    public static void ClientNetworkHandler(){
-        /*ClientPlayNetworking.registerGlobalReceiver(NetWorkHelper.hoppercooltime,((client, handler, buf, responseSender) ->
-                client.execute(()->{
-                    //HopperCoolTimeLogger.getHopperBlockCoolTime().putAll();
-                })));*/
+
+    public static void loadServer(){
+        ClientNetworkHandlerRegister();
     }
+
+    private static void ClientNetworkHandlerRegister(){
+        ClientPlayNetworking.registerGlobalReceiver(NetWorkPacket.HopperCoolTime, ((client, handler, buf, responseSender) -> HopperCoolTimeRender.getServerLogger(buf)));
+        ClientPlayNetworking.registerGlobalReceiver(NetWorkPacket.BlockUpdate, ((client, handler, buf, responseSender) -> BlockUpdateRender.getServerLogger(buf)));
+        ClientPlayNetworking.registerGlobalReceiver(NetWorkPacket.ClearRender, ((client, handler, buf, responseSender) -> RenderList.clear(buf)));
+    }
+
+
 }

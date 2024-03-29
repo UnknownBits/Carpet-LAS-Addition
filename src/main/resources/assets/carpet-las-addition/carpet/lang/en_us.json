@@ -11,4 +11,6 @@
   "rule.CompostGradeModification.name":"Compost grade modification",
   "rule.CompostGradeModification.desc": "Any item placed in the bin will add one level to the bin [you need to right-click the bin once after each setting change to apply the current setting]"
 
+  "rule.SpongeRespawn.name": "SpongeReproduction",
+  "rule.SpongeRespawn.desc": "Use bone_meal on the sponge, the sponge will randomly convert nearby water sources into wet sponges in lukewarm_ocean or warm_ocean"
 }

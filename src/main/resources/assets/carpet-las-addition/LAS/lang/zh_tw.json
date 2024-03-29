@@ -1,0 +1,22 @@
+{
+  "LAS.info.title": "Lazy Alien Server",
+  "LAS.info.base": "LAS全称Lazy Alien Server 是一个以摆烂为核心的技术向服务器",
+  "LAS.info.purpose": "我们的宗旨:矢志不渝，历久弥新",
+  "LAS.info.website": "官网",
+
+  "CLA.info.about": "       关于CLA",
+  "CLA.info.author": "作者: Fanzhitianyu",
+  "CLA.info.helper": "协助: Abxl_lly ———— 部分功能和画饼",
+  "CLA.info.icon_helper": "协助: yizhi_jiyan_ ———— 提供了CLA的图标",
+
+  "CLA.setting.LogEnabled": "CLA Log 已启用",
+  "CLA.setting.LogDisabled": "CLA Log 已禁用",
+
+  "Record.CommandBlock.REDSTONE": "脉冲",
+  "Record.CommandBlock.AUTO": "循环",
+  "Record.CommandBlock.SEQUENCE": "连锁",
+  "Record.CommandBlock.isConditional": "条件 : 有",
+  "Record.CommandBlock.noConditional": "条件 : 无",
+  "Record.CommandBlock.isAlwaysActive": "状态 : 保持开启",
+  "Record.CommandBlock.noAlwaysActive": "状态 : 红石控制"
+}

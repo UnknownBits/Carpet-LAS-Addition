@@ -1,16 +1,32 @@
 package lazyalienserver.carpetlasaddition.network;
 
-import lazyalienserver.carpetlasaddition.utils.LASLogUtils;
-import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.util.Identifier;
+import lazyalienserver.carpetlasaddition.logging.Loggers.BlockUpdateLogger.BlockUpdateLogger;
+import lazyalienserver.carpetlasaddition.logging.Loggers.HopperCoolTimeLogger.HopperCoolTimeLogger;
+import java.util.ArrayList;
 
 public class ServerNetworkHandler {
-    public static void send(ServerPlayerEntity player, Identifier identifier, PacketByteBuf buf){
-        ServerPlayNetworking.send(player,identifier,buf);
-    }
+    public static final ArrayList<Runnable> ServerPacketSender = new ArrayList<>();
+
     public static void loadServer(){
-        LASLogUtils.log("Lazy-Alien-Server's Server start run.");
+        ServerNetworkHandlerRegister();
+    }
+
+    private static void ServerNetworkHandlerRegister(){
+
+    }
+
+    public static void sendPacket(){
+        for (Runnable sendPacket: ServerPacketSender){
+            sendPacket.run();
+        }
+    }
+
+    public static void registerServerPacketSender(Runnable sender){
+        ServerPacketSender.add(sender);
+    }
+
+    static {
+        registerServerPacketSender(HopperCoolTimeLogger::sendHopperCoolTime);
+        //registerServerPacketSender(BlockUpdateLogger::sendBlockUpdate);
     }
 }

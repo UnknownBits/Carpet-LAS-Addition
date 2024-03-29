@@ -1,0 +1,19 @@
+{
+  "carpet.category.testaddition": "TestAddition",
+
+  "carpet.rule.EnderPearlChunkLoading.name": "終界珍珠區塊加載",
+  "carpet.rule.EnderPearlChunkLoading.desc": "讓水平移動的終界珍珠可以強加載區塊",
+
+  "rule.NoteBlockLoadChunk.name": "音符盒載入",
+  "rule.NoteBlockLoadChunk.desc": "當上方有種植蘭花盆的24階音符盒時，會載入300gt區塊[強:3*3,弱:5*5,邊界7*7]",
+
+  "rule.CompostGradeModification.name": "堆肥等級修改",
+  "rule.CompostGradeModification.desc": "任何放入堆肥桶的物品都將使堆肥桶升一級[每次更改設定後需要點擊堆肥桶一次以應用當前設定]",
+
+  "rule.MinecartDropModify.name": "礦車掉落機制修改",
+  "rule.MinecartDropModify.desc": "將1.18.2版本的礦車掉落機制更換為1.19版本的礦車掉落機制",
+
+  "rule.SpongeReproduction.name": "海綿繁殖",
+  "rule.SpongeReproduction.desc": "在溫水海洋或暖水海洋中，對海綿使用骨粉時，海綿會隨機將附近水轉變為濕潤海綿"
+
+}

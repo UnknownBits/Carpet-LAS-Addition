@@ -13,15 +13,23 @@ import java.util.Collections;
 import java.util.Map;
 
 public class CarpetLASAdditionTranslations {
-    public static Map<String, String> getTranslationFromResourcePath(String lang)
+    public static Map<String,String> getCarpetResource(String lang){
+        return getTranslationFromResourcePath("assets/carpet-las-addition/carpet/lang/%s.json",lang);
+    }
+    public static Map<String,String> getLASResource(String lang){
+        return getTranslationFromResourcePath("assets/carpet-las-addition/LAS/lang/%s.json",lang);
+    }
+
+    public static Map<String, String> getTranslationFromResourcePath(String path,String lang)
     {
         /*String dataJSON;
         try
         {
-            dataJSON = IOUtils.toString(Objects.requireNonNull(CarpetLASAdditionTranslations.class.getClassLoader().getResourceAsStream(String.format("assets/carpet-las-addition/lang/%s.json", lang))), StandardCharsets.UTF_8);
+            dataJSON = IOUtils.toString(Objects.requireNonNull(CarpetLASAdditionTranslations.class.getClassLoader().getResourceAsStream(String.format(path, lang))), StandardCharsets.UTF_8);
         }
         catch (IOException | NullPointerException e)
         {
+            LASLogUtils.error("[CLA]:"+"failed read lang_File   " + String.format(path,lang));
             return null;
         }
 

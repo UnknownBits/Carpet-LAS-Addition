@@ -28,5 +28,10 @@
     "minecraft": ">=${minecraft_version}",
     "carpet": ">=1.4.112"
   },
-  "accessWidener": "carpet-las-addition.accesswidener"
+  "accessWidener": "carpet-las-addition.accesswidener",
+  "custom": {
+    "loom:injected_interfaces": {
+        "net/minecraft/block/WetSpongeBlock": ["net/minecraft/block/Fertilizable"]
+    }
+  }
 }

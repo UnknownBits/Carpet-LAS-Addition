@@ -11,8 +11,11 @@
     "ComposterBlockMixin",
     "HopperBlockEntityMixin",
     "NoteBlockMixin",
+    "ServerPlayNetworkHandlerMixin",
     "ServerWorldMixin",
-    "ThrownEntityMixin"
+    "ThrownEntityMixin",
+    "WetSpongeBlockMixin",
+    "SettingsManagerMixin"
   ],
   "client": [
     "WorldRendererMixin"

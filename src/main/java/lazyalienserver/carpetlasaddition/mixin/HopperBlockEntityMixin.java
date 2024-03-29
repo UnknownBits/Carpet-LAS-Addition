@@ -15,8 +15,10 @@ public class HopperBlockEntityMixin {
 
     @Inject(at=@At(value = "INVOKE",target = "Lnet/minecraft/world/World;getTime()J"),method = "serverTick")
     private static void serverTick(World world, BlockPos pos, BlockState state, HopperBlockEntity blockEntity, CallbackInfo ci){
-        if(HopperCoolTimeLogger.isLoggerHopperCoolTime()) {
-            HopperCoolTimeLogger.getHopperBlockCoolTime().put(pos, blockEntity.transferCooldown);
-        }
+//        if(HopperCoolTimeLogger.isLoggerHopperCoolTime()&&blockEntity.transferCooldown<0) {
+//            HopperCoolTimeLogger.getHopperBlockCoolTime().remove(pos);
+//        }
+//        else HopperCoolTimeLogger.getHopperBlockCoolTime().put(pos, blockEntity.transferCooldown);
+        HopperCoolTimeLogger.addHopperCoolTime(world,pos,blockEntity);
     }
 }
