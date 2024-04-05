@@ -9,6 +9,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import lazyalienserver.carpetlasaddition.CarpetLASSetting;
+import net.minecraft.world.WorldView;
 import net.minecraft.world.biome.BiomeKeys;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -16,10 +17,6 @@ import org.spongepowered.asm.mixin.Unique;
 import java.util.Random;
 @Mixin(WetSpongeBlock.class)
 public class WetSpongeBlockMixin implements Fertilizable {
-    @Override
-    public boolean isFertilizable(BlockView world, BlockPos pos, BlockState state, boolean isClient) {
-        return CarpetLASSetting.SpongeReproduction;
-    }
     @Unique
     private static boolean haveWaterAround(World world, BlockPos pos) {
         for (int i = -1; i <= 1; i++) {
@@ -37,13 +34,20 @@ public class WetSpongeBlockMixin implements Fertilizable {
         return false;
     }
 
+
+
     @Override
-    public boolean canGrow(World world, Random random, BlockPos pos, BlockState state) {
+    public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state, boolean isClient) {
+        return CarpetLASSetting.SpongeReproduction;
+    }
+
+    @Override
+    public boolean canGrow(World world, net.minecraft.util.math.random.Random random, BlockPos pos, BlockState state) {
         return CarpetLASSetting.SpongeReproduction &&(world.getBiome(pos).getKey().isPresent() && (world.getBiome(pos).getKey().get().equals(BiomeKeys.WARM_OCEAN) || world.getBiome(pos).getKey().get().equals(BiomeKeys.LUKEWARM_OCEAN)))&&haveWaterAround(world,pos);
     }
 
     @Override
-    public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
+    public void grow(ServerWorld world, net.minecraft.util.math.random.Random random, BlockPos pos, BlockState state) {
         if(CarpetLASSetting.SpongeReproduction){
             switch (random.nextInt(6)){
                 case 0:if (world.getBlockState(pos.add(1,0,0)).getBlock().equals(Blocks.WATER)&&random.nextFloat()>0.90)

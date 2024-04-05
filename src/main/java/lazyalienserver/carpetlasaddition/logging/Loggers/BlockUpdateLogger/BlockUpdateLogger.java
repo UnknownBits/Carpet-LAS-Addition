@@ -37,7 +37,7 @@ public class BlockUpdateLogger {
             ServerPlayerEntity player = CarpetServer.minecraft_server.getPlayerManager().getPlayer(Player.getKey());
             if (player != null) {
                 for (Map.Entry<Pair<Identifier, BlockPos>, UpdateType> blockUpdate : BlockUpdate.entrySet()) {
-                    if (blockUpdate.getKey().getLeft().equals(player.world.getRegistryKey().getValue())) {
+                    if (blockUpdate.getKey().getLeft().equals(player.getWorld().getRegistryKey().getValue())) {
                         BlockPos pos = blockUpdate.getKey().getRight();
                         int x, y, z;
                         x = pos.getX();

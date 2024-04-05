@@ -1,8 +1,8 @@
 {
   "carpet.category.testaddition": "TestAddition",
 
-  "carpet.rule.EnderPearlChunkLoading.name": "終界珍珠區塊加載",
-  "carpet.rule.EnderPearlChunkLoading.desc": "讓水平移動的終界珍珠可以強加載區塊",
+  "rule.enderPearlChunkLoading.name": "終界珍珠區塊加載",
+  "rule.enderPearlChunkLoading.desc": "讓水平移動的終界珍珠可以強加載區塊",
 
   "rule.NoteBlockLoadChunk.name": "音符盒載入",
   "rule.NoteBlockLoadChunk.desc": "當上方有種植蘭花盆的24階音符盒時，會載入300gt區塊[強:3*3,弱:5*5,邊界7*7]",

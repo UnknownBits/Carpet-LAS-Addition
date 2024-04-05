@@ -26,9 +26,9 @@ public class CommandCheckHelper {
 
     static {
         CommandCheckHelper.registerCheckCommand("/log blockUpdate", BlockUpdateLogger::clearClient);
-        CommandCheckHelper.registerCheckCommand("/log hopperCoolTime", HopperCoolTimeLogger::clearClient);
+        //CommandCheckHelper.registerCheckCommand("/log hopperCoolTime", HopperCoolTimeLogger::clearClient);
         CommandCheckHelper.registerCheckCommand("/log blockUpdate clear", BlockUpdateLogger::clearClient);
-        CommandCheckHelper.registerCheckCommand("/log hopperCoolTime clear", HopperCoolTimeLogger::clearClient);
+        //CommandCheckHelper.registerCheckCommand("/log hopperCoolTime clear", HopperCoolTimeLogger::clearClient);
         CommandCheckHelper.registerCheckCommand("/log clear", RenderLogger::clearClientLoggers);
     }
 }

@@ -18,19 +18,13 @@ public class ServerPlayNetworkHandlerMixin {
     @Shadow
     public ServerPlayerEntity player;
 
-    @Inject(at = @At(value = "INVOKE", target = "Lnet/minecraft/server/network/ServerPlayerEntity;sendSystemMessage(Lnet/minecraft/text/Text;Ljava/util/UUID;)V"), method = "onUpdateCommandBlock")
+    @Inject(at = @At(value = "INVOKE", target = "Lnet/minecraft/server/network/ServerPlayerEntity;sendMessage(Lnet/minecraft/text/Text;)V"), method = "onUpdateCommandBlock")
     public void onUpdateCommandBlock(UpdateCommandBlockC2SPacket packet, CallbackInfo ci) {
         if (LASResource.getLASConfig("CommandBlockRecord").equals("true")) {
             switch (packet.getType()) {
-                case REDSTONE -> {
-                    RecordList.commandBlockRecord.addRecord("[Time:" + DateTimeUtils.getNowTime() + "]: { Player:" + this.player.getName().asString() + " | " + packet.getBlockPos().toString() + " | Command:" + packet.getCommand() + " | Type: " + LASResource.getLASTranslationsResource("Record.CommandBlock.REDSTONE") + checkUpdateCommandBlock(packet) + "}");
-                }
-                case AUTO -> {
-                    RecordList.commandBlockRecord.addRecord("[Time:" + DateTimeUtils.getNowTime() + "]: { Player:" + this.player.getName().asString() + " | " + packet.getBlockPos().toString() + " | Command:" + packet.getCommand() + " | Type: " + LASResource.getLASTranslationsResource("Record.CommandBlock.AUTO") + checkUpdateCommandBlock(packet) + "}");
-                }
-                case SEQUENCE -> {
-                    RecordList.commandBlockRecord.addRecord("[Time:" + DateTimeUtils.getNowTime() + "]: { Player:" + this.player.getName().asString() + " | " + packet.getBlockPos().toString() + " | Command:" + packet.getCommand() + " | Type: " + LASResource.getLASTranslationsResource("Record.CommandBlock.SEQUENCE") + checkUpdateCommandBlock(packet) + "}");
-                }
+                case REDSTONE -> RecordList.commandBlockRecord.addRecord("[Time:" + DateTimeUtils.getNowTime() + "]: { Player:" + this.player.getName().getString()+ " | " + packet.getBlockPos().toString() + " | Command:" + packet.getCommand() + " | Type: " + LASResource.getLASTranslationsResource("Record.CommandBlock.REDSTONE") + checkUpdateCommandBlock(packet) + "}");
+                case AUTO -> RecordList.commandBlockRecord.addRecord("[Time:" + DateTimeUtils.getNowTime() + "]: { Player:" + this.player.getName().getString() + " | " + packet.getBlockPos().toString() + " | Command:" + packet.getCommand() + " | Type: " + LASResource.getLASTranslationsResource("Record.CommandBlock.AUTO") + checkUpdateCommandBlock(packet) + "}");
+                case SEQUENCE -> RecordList.commandBlockRecord.addRecord("[Time:" + DateTimeUtils.getNowTime() + "]: { Player:" + this.player.getName().getString() + " | " + packet.getBlockPos().toString() + " | Command:" + packet.getCommand() + " | Type: " + LASResource.getLASTranslationsResource("Record.CommandBlock.SEQUENCE") + checkUpdateCommandBlock(packet) + "}");
             }
         }
     }

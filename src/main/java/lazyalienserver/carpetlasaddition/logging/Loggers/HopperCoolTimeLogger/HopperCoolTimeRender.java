@@ -19,7 +19,7 @@ public class HopperCoolTimeRender {
     public static final Map<BlockPos, Integer> coolTimeMap = new ConcurrentHashMap<>();
 
     static {
-        RenderList.add(HopperCoolTimeLogger.ID,HopperCoolTimeRender.coolTimeMap::clear);
+        //RenderList.add(HopperCoolTimeLogger.ID,HopperCoolTimeRender.coolTimeMap::clear);
     }
 
     public static void render(MatrixStack matrices) {
@@ -29,9 +29,9 @@ public class HopperCoolTimeRender {
         for (Map.Entry<BlockPos, Integer> entry : coolTimeMap.entrySet()) {
             pos = entry.getKey();
             if (entry.getValue() > 0) {
-                BaseRender.drawString(entry.getValue().toString(), pos.getX() + 0.5F, pos.getY() + 0.5F, pos.getZ() + 0.5F, Formatting.RED.getColorValue(), true, 0.03F);
+                BaseRender.drawString(matrices,entry.getValue().toString(), new BlockPos(pos.getX(), pos.getY(), pos.getZ()), Formatting.RED.getColorValue(),  0.03F);
             } else if(entry.getValue() == 0){
-                BaseRender.drawString(entry.getValue().toString(), pos.getX() + 0.5F, pos.getY() + 0.5F, pos.getZ() + 0.5F, Formatting.GREEN.getColorValue(), true, 0.03F);
+                BaseRender.drawString(matrices,entry.getValue().toString(), new BlockPos(pos.getX(), pos.getY(), pos.getZ()), Formatting.GREEN.getColorValue(),  0.03F);
             }else coolTimeMap.remove(pos);
         }
     }

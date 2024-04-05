@@ -36,12 +36,12 @@ public class WorldRendererMixin {
     @Unique
     private static void render(MatrixStack matrices){
         HopperCoolTimeLogger.RenderHopperCoolTime(matrices);
-        BlockUpdateLogger.RenderBlockUpDate(matrices);
+        //BlockUpdateLogger.RenderBlockUpDate(matrices);
     }
     @Unique
     private static void Test(MatrixStack matrices){
-        Camera camera= MinecraftClient.getInstance().gameRenderer.getCamera();
-        MinecraftClient.getInstance().debugRenderer.chunkBorderDebugRenderer.render(matrices,null,camera.getPos().x,camera.getPos().y,camera.getPos().z);
+        //Camera camera= MinecraftClient.getInstance().gameRenderer.getCamera();
+        //MinecraftClient.getInstance().debugRenderer.chunkBorderDebugRenderer.render(matrices,null,camera.getPos().x,camera.getPos().y,camera.getPos().z);
         //VertexConsumerProvider.Immediate immediate = this.bufferBuilders.getEntityVertexConsumers();
         //VertexConsumer vertexConsumer3 = immediate.getBuffer(RenderLayer.getLines());
     }

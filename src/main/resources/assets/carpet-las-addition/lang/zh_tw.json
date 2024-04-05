@@ -1,6 +1,0 @@
-{
-  "carpet.category.testaddition": "TestAddition",
-
-  "carpet.rule.EnderPearlChunkLoading.name": "終界珍珠區塊加載",
-  "carpet.rule.EnderPearlChunkLoading.appSource": "讓水平移動的終界珍珠可以強加載區塊"
-}

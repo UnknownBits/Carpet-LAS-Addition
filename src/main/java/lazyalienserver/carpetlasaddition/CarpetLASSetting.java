@@ -4,6 +4,8 @@ package lazyalienserver.carpetlasaddition;
 
 import carpet.api.settings.Rule;
 
+import static lazyalienserver.carpetlasaddition.settings.LASAdditionRuleCategory.*;
+
 public class CarpetLASSetting {
     //@Rule(desc = "Allow horizontally moving ender pearls to force chunk loading", category = {LASAddition})
     @Rule(categories = {"LAS"})
@@ -16,7 +18,7 @@ public class CarpetLASSetting {
     public static boolean CompostGradeModification=false;
 
     @Rule(
-            desc = "Use bone_meal on the sponge, the sponge will randomly convert nearby water into wet sponges in lukewarm_ocean or warm_ocean",category = {LASAddition,SURVIVAL,FEATURE}
+             categories = {LASAddition,SURVIVAL,FEATURE}
     )
     public static boolean SpongeReproduction =false;
 

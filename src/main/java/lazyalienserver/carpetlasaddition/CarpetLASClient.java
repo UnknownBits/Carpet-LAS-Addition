@@ -9,8 +9,8 @@ import lazyalienserver.carpetlasaddition.utils.LASResource;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.client.command.v1.ClientCommandManager;
-import net.fabricmc.fabric.api.client.command.v1.FabricClientCommandSource;
+import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager;
+import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
 
 @Environment(EnvType.CLIENT)
 public class CarpetLASClient implements ClientModInitializer {

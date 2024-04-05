@@ -9,8 +9,7 @@
   "rule.NoteBlockLoadChunk.desc": "充能上方有种着兰花花盆的24档音符盒加载300gt区块[强:3*3,弱:5*5,边界7*7]",
 
   "rule.CompostGradeModification.name":"堆肥等级修改",
-  "rule.CompostGradeModification.desc":"任何放入堆肥桶的物品都将使堆肥桶增加一级[每次更改设置后需要右键一次堆肥桶才能应用当前设置]"
-  "rule.CompostGradeModification.desc": "任何放入堆肥桶的物品都将使堆肥桶增加一级[每次更改设置后需要右键一次堆肥桶才能应用当前设置]",
+  "rule.CompostGradeModification.desc":"任何放入堆肥桶的物品都将使堆肥桶增加一级[每次更改设置后需要右键一次堆肥桶才能应用当前设置]",
 
   "rule.SpongeReproduction.name": "海绵繁殖",
   "rule.SpongeReproduction.desc": "在温水海洋或暖水海洋，对海绵使用骨粉，海绵会随机将附近水变为湿润海绵"

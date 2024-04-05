@@ -19,6 +19,6 @@ public class HopperBlockEntityMixin {
 //            HopperCoolTimeLogger.getHopperBlockCoolTime().remove(pos);
 //        }
 //        else HopperCoolTimeLogger.getHopperBlockCoolTime().put(pos, blockEntity.transferCooldown);
-        HopperCoolTimeLogger.addHopperCoolTime(world,pos,blockEntity);
+        //HopperCoolTimeLogger.addHopperCoolTime(world,pos,blockEntity);
     }
 }

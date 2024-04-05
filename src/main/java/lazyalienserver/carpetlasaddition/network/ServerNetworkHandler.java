@@ -26,7 +26,7 @@ public class ServerNetworkHandler {
     }
 
     static {
-        registerServerPacketSender(HopperCoolTimeLogger::sendHopperCoolTime);
+        //registerServerPacketSender(HopperCoolTimeLogger::sendHopperCoolTime);
         //registerServerPacketSender(BlockUpdateLogger::sendBlockUpdate);
     }
 }

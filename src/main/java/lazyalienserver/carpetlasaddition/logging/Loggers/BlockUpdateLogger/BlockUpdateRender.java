@@ -26,14 +26,14 @@ public class BlockUpdateRender {
         //TODO 实际渲染有偏差，可能与锂钠有关系
         for (Map.Entry<BlockPos, Integer> entry : blockUpdateMap.entrySet()) {
             if (entry.getValue() == UpdateType.NC.s) {
-                BaseRender.drawString("NC", entry.getKey().getX() + 0.5F, entry.getKey().getY() + 0.5F, entry.getKey().getZ() + 0.5F, Formatting.DARK_AQUA.getColorValue(), true, 0.025F);
-                BaseRender.drawBoxWithLine(entry.getKey(), entry.getKey().add(1, 1, 1), 1, 0, 0, 0.1F, true);
+                BaseRender.drawString(matrices,"NC", new BlockPos(entry.getKey().getX(), entry.getKey().getY(), entry.getKey().getZ()), Formatting.DARK_AQUA.getColorValue(),  0.025F);
+                BaseRender.drawBoxWithLine(matrices,entry.getKey(), entry.getKey().add(1, 1, 1), 1, 0, 0, 0.1F, true);
             } else if (entry.getValue() == UpdateType.PP.s) {
-                BaseRender.drawString("PP", entry.getKey().getX() + 0.5F, entry.getKey().getY() + 0.5F, entry.getKey().getZ() + 0.5F, Formatting.DARK_AQUA.getColorValue(), true, 0.025F);
-                BaseRender.drawBoxWithLine(entry.getKey(), entry.getKey().add(1, 1, 1), 1, 1, 0, 0.1F, true);
+                BaseRender.drawString(matrices,"PP", new BlockPos(entry.getKey().getX(), entry.getKey().getY() , entry.getKey().getZ()), Formatting.DARK_AQUA.getColorValue(), 0.025F);
+                BaseRender.drawBoxWithLine(matrices,entry.getKey(), entry.getKey().add(1, 1, 1), 1, 1, 0, 0.1F, true);
             } else {
-                BaseRender.drawString("NC&PP", entry.getKey().getX() + 0.5F, entry.getKey().getY() + 0.5F, entry.getKey().getZ() + 0.5F, Formatting.DARK_AQUA.getColorValue(), true, 0.025F);
-                BaseRender.drawBoxWithLine(entry.getKey(), entry.getKey().add(1, 1, 1), 0.5F, 0.5F, 1, 0.1F, true);
+                BaseRender.drawString(matrices,"NC&PP", new BlockPos(entry.getKey().getX(), entry.getKey().getY(), entry.getKey().getZ()), Formatting.DARK_AQUA.getColorValue(), 0.025F);
+                BaseRender.drawBoxWithLine(matrices,entry.getKey(), entry.getKey().add(1, 1, 1), 0.5F, 0.5F, 1, 0.1F, true);
             }
         }
     }

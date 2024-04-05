@@ -10,8 +10,11 @@ import lazyalienserver.carpetlasaddition.records.Record;
 import lazyalienserver.carpetlasaddition.records.RecordList;
 import lazyalienserver.carpetlasaddition.utils.*;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.command.ServerCommandSource;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.Map;
 
@@ -23,7 +26,6 @@ public class CarpetLASServer implements ModInitializer,CarpetExtension {
     public String version(){
         return "1.2.0";
     }
-    public static final String MOD_NAME="Carpet-LAS-Addition";
     public String modID(){
         return "carpetlasaddition";
     }
@@ -35,7 +37,7 @@ public class CarpetLASServer implements ModInitializer,CarpetExtension {
     public void onInitialize() {
         CarpetLASServer.loadExtension();
         //CommandRegistrationCallback.EVENT.register(CarpetLASServer::registerLASCommands);
-        CommandRegistrationCallback.EVENT.register(CarpetLASServer::registerLASCommands);
+        CommandRegistrationCallback.EVENT.register((dispatcher, b, b2) -> registerLASCommands(dispatcher));
         CarpetLASServer.ServerNetWork();
     }
 
@@ -48,7 +50,8 @@ public class CarpetLASServer implements ModInitializer,CarpetExtension {
         LoggerRegistry.registerLoggers();
     }
 
-    public static void registerLASCommands(CommandDispatcher<ServerCommandSource> dispatcher, boolean b) {
+    public static void registerLASCommands(CommandDispatcher<ServerCommandSource> dispatcher) {
+        //LazyAlienServerCommand.register(dispatcher);
     }
 
     @Override

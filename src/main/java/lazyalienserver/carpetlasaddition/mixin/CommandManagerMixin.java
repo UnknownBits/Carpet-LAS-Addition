@@ -1,5 +1,6 @@
 package lazyalienserver.carpetlasaddition.mixin;
 
+import com.mojang.brigadier.ParseResults;
 import lazyalienserver.carpetlasaddition.helper.CommandCheckHelper;
 import lazyalienserver.carpetlasaddition.records.RecordList;
 import lazyalienserver.carpetlasaddition.utils.DateTimeUtils;
@@ -17,18 +18,18 @@ import java.util.Objects;
 @Mixin(CommandManager.class)
 public class CommandManagerMixin {
     @Inject(at = @At("HEAD"), method = "execute")
-    public void execute(ServerCommandSource commandSource, String command, CallbackInfoReturnable<Integer> cir) {
+    public void execute(ParseResults<ServerCommandSource> parseResults, String command, CallbackInfoReturnable<Integer> cir) {
         //LASLogUtils.log("Source"+commandSource.getName());
-        if(!Objects.equals(commandSource.getName(), "@")||Objects.equals(commandSource.getName(), "server")){
+        if(!Objects.equals(parseResults.getContext().getSource().getName(), "@")||Objects.equals(parseResults.getContext().getSource().getName(), "server")){
             try{
-                CommandCheckHelper.checkCommand(command,commandSource.getPlayer());
+                CommandCheckHelper.checkCommand(command,parseResults.getContext().getSource().getPlayer());
             }catch (Exception e){
                 LASLogUtils.error("No player",e.getMessage());
             }
         }
         if (LASResource.getLASConfig("CommandRecord").equals("true")) {
-            if (!Objects.equals(commandSource.getName(), "@")) {
-                RecordList.commandRecord.addRecord("[Time:" + DateTimeUtils.getNowTime() + "]: { From:" + commandSource.getName() + " | Command:" + command + "}");
+            if (!Objects.equals(parseResults.getContext().getSource().getName(), "@")) {
+                RecordList.commandRecord.addRecord("[Time:" + DateTimeUtils.getNowTime() + "]: { From:" + parseResults.getContext().getSource().getName() + " | Command:" + command + "}");
             }
         }
     }

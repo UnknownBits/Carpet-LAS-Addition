@@ -7,14 +7,13 @@ import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.text.Text;
 
-import static lazyalienserver.carpetlasaddition.logging.Loggers.BlockUpdateLogger.BlockUpdateLogger.List;
 import static net.fabricmc.fabric.api.client.command.v2.ClientCommandManager.literal;
 
 
 public class TestCommand {
     public static boolean tf=false;
     public static void register(CommandDispatcher<FabricClientCommandSource> dispatcher){
-        dispatcher.register(literal("Test").executes(c->RenderLine()).then(literal("list").executes(c->List())));
+        dispatcher.register(literal("Test").executes(c->RenderLine()));//.then(literal("list").executes(c->List())))
     }
 
     public static int RenderLine(){
@@ -23,13 +22,15 @@ public class TestCommand {
         tf=!tf;
         if(tf){
             client.player.sendMessage(Text.of("启动渲染"),false);
-            BlockUpdateLogger.ClearHashMap();
+            //BlockUpdateLogger.ClearHashMap();
+
             //BlockUpdateLogger.getBlockUpdateMap().put(MinecraftClient.getInstance().player.getBlockPos(),true);
             LASLogUtils.log("LAS-Log");
         }
         else {
             client.player.sendMessage(Text.of("关闭渲染"),false);
-            BlockUpdateLogger.ClearHashMap();
+            //BlockUpdateLogger.ClearHashMap();
+
             //BlockUpdateLogger.getBlockUpdateMap().put(MinecraftClient.getInstance().player.getBlockPos(),false);
             //HopperCoolTimeLogger.getHopperBlockCoolTime().clear();
             LASLogUtils.log("LAS-Log");

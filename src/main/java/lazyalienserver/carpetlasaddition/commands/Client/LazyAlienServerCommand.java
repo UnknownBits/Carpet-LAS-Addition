@@ -6,18 +6,17 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.context.CommandContext;
 import lazyalienserver.carpetlasaddition.utils.FileUtils;
 import lazyalienserver.carpetlasaddition.utils.LASResource;
-import net.fabricmc.fabric.api.client.command.v1.FabricClientCommandSource;
-import net.minecraft.server.command.CommandManager;
+import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
 import net.minecraft.text.*;
 import net.minecraft.util.Formatting;
 
 import java.util.ArrayList;
 
 import static lazyalienserver.carpetlasaddition.commands.Server.LazyAlienServerCommand.CLALog;
-import static net.fabricmc.fabric.api.client.command.v1.ClientCommandManager.literal;
+import static net.fabricmc.fabric.api.client.command.v2.ClientCommandManager.literal;
 
 public class LazyAlienServerCommand {
-    public static ArrayList<BaseText> info=new ArrayList<>();
+    public static ArrayList<Text> info=new ArrayList<>();
 
     public static void register(CommandDispatcher<FabricClientCommandSource> dispatcher) {
         dispatcher.register(literal("LAS").executes(LazyAlienServerCommand::LASInfo)
@@ -36,7 +35,7 @@ public class LazyAlienServerCommand {
 
     private static Integer LASInfo(CommandContext<FabricClientCommandSource> context){
         info.clear();
-        BaseText title=Messenger.s(LASResource.getLASTranslationsResource("LAS.info.title"));
+        MutableText title= (MutableText) Messenger.s(LASResource.getLASTranslationsResource("LAS.info.title"));
         title.setStyle(Style.EMPTY.withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL,"https://lazyalienserver.top/")).withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT,Text.of(LASResource.getLASTranslationsResource("LAS.info.website")))).withColor(Formatting.BLUE).withBold(true));
         info.add(title);
         info.add(Messenger.s(LASResource.getLASTranslationsResource("LAS.info.base")));
@@ -63,7 +62,7 @@ public class LazyAlienServerCommand {
 
     private static Integer aboutMod(CommandContext<FabricClientCommandSource> context){
         info.clear();
-        BaseText baseText=Messenger.s(LASResource.getLASTranslationsResource("CLA.info.about"));
+        MutableText baseText= (MutableText) Messenger.s(LASResource.getLASTranslationsResource("CLA.info.about"));
         baseText.setStyle(Style.EMPTY.withBold(true).withColor(Formatting.LIGHT_PURPLE).withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT,Text.of("github"))).withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL,"https://github.com/UnknownBits/Carpet-LAS-Addition")));
         info.add(baseText);
         info.add(Messenger.s(LASResource.getLASTranslationsResource("CLA.info.author")));

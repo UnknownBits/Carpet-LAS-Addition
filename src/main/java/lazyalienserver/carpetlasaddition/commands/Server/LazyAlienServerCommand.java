@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 import static net.minecraft.server.command.CommandManager.literal;
 public class LazyAlienServerCommand {
-    public static ArrayList<BaseText> info=new ArrayList<>();
+    public static ArrayList<Text> info=new ArrayList<>();
     public static Boolean CLALog =false;
 
     public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
@@ -35,7 +35,7 @@ public class LazyAlienServerCommand {
 
     private static Integer LASInfo(CommandContext<ServerCommandSource> context){
         info.clear();
-        BaseText title=Messenger.s(LASResource.getLASTranslationsResource("LAS.info.title"));
+        MutableText title= (MutableText) Messenger.s(LASResource.getLASTranslationsResource("LAS.info.title"));
         title.setStyle(Style.EMPTY.withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL,"https://lazyalienserver.top/")).withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT,Text.of(LASResource.getLASTranslationsResource("LAS.info.website")))).withColor(Formatting.BLUE).withBold(true));
         info.add(title);
         info.add(Messenger.s(LASResource.getLASTranslationsResource("LAS.info.base")));
@@ -62,7 +62,7 @@ public class LazyAlienServerCommand {
 
     private static Integer aboutMod(CommandContext<ServerCommandSource> context){
         info.clear();
-        BaseText baseText=Messenger.s(LASResource.getLASTranslationsResource("CLA.info.about"));
+        MutableText baseText= (MutableText) Messenger.s(LASResource.getLASTranslationsResource("CLA.info.about"));
         baseText.setStyle(Style.EMPTY.withBold(true).withColor(Formatting.LIGHT_PURPLE));
         info.add(baseText);
         info.add(Messenger.s(LASResource.getLASTranslationsResource("CLA.info.author")));

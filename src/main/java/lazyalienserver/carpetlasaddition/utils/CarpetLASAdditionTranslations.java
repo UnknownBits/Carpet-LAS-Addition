@@ -37,7 +37,8 @@ public class CarpetLASAdditionTranslations {
         return gson.fromJson(dataJSON, (new TypeToken<Map<String, String>>()
         {
         }).getType());*/
-        InputStream langFile = CarpetLASAdditionTranslations.class.getClassLoader().getResourceAsStream("assets/carpet-las-addition/lang/%s.json".formatted(lang));
+        //InputStream langFile = CarpetLASAdditionTranslations.class.getClassLoader().getResourceAsStream("assets/carpet-las-addition/lang/%s.json".formatted(lang));
+        InputStream langFile = CarpetLASAdditionTranslations.class.getClassLoader().getResourceAsStream(path.formatted(lang));
         if (langFile == null) {
             // we don't have that language
             return Collections.emptyMap();
