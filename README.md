@@ -1,3 +1,6 @@
+>[!NOTE]
+>The project has been refactored and migrated to:[New-CLA](https://github.com/LazyAlienServer/Carpet-LAS-Addition)
+
 # Carpet-LAS-Addition
 Other languages: [简体中文](/docs/zh_cn/README.md)
 >*ps:Carpet and FabricAPI Required*
