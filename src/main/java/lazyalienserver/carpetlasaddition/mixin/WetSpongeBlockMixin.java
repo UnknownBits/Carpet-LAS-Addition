@@ -18,7 +18,7 @@ import java.util.Random;
 public class WetSpongeBlockMixin implements Fertilizable {
     @Override
     public boolean isFertilizable(BlockView world, BlockPos pos, BlockState state, boolean isClient) {
-        return CarpetLASSetting.SpongeRespawn;
+        return CarpetLASSetting.SpongeReproduction;
     }
     @Unique
     private static boolean haveWaterAround(World world, BlockPos pos) {
@@ -39,12 +39,12 @@ public class WetSpongeBlockMixin implements Fertilizable {
 
     @Override
     public boolean canGrow(World world, Random random, BlockPos pos, BlockState state) {
-        return CarpetLASSetting.SpongeRespawn&&(world.getBiome(pos).getKey().isPresent() && (world.getBiome(pos).getKey().get().equals(BiomeKeys.WARM_OCEAN) || world.getBiome(pos).getKey().get().equals(BiomeKeys.LUKEWARM_OCEAN)))&&haveWaterAround(world,pos);
+        return CarpetLASSetting.SpongeReproduction &&(world.getBiome(pos).getKey().isPresent() && (world.getBiome(pos).getKey().get().equals(BiomeKeys.WARM_OCEAN) || world.getBiome(pos).getKey().get().equals(BiomeKeys.LUKEWARM_OCEAN)))&&haveWaterAround(world,pos);
     }
 
     @Override
     public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
-        if(CarpetLASSetting.SpongeRespawn){
+        if(CarpetLASSetting.SpongeReproduction){
             switch (random.nextInt(6)){
                 case 0:if (world.getBlockState(pos.add(1,0,0)).getBlock().equals(Blocks.WATER)&&random.nextFloat()>0.90)
                     world.setBlockState(pos.add(1,0,0), Blocks.WET_SPONGE.getDefaultState());break;

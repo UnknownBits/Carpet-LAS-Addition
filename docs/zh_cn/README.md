@@ -1,3 +1,6 @@
+>[!NOTE]
+>项目已重构迁移:[New-CLA](https://github.com/LazyAlienServer/Carpet-LAS-Addition)
+
 # Carpet-LAS-Addition
 >*ps:前置要Carpet 和 FabricAPI*
 >

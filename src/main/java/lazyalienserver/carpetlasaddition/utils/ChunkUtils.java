@@ -27,8 +27,8 @@ public class ChunkUtils {
             double nz = pos.z + velocity.z;
             ChunkPos cp = new ChunkPos(MathHelper.floor(nx) >> 4, MathHelper.floor(nz) >> 4);
             ChunkPos cp2 = new ChunkPos(MathHelper.floor(pos.x) >> 4, MathHelper.floor(pos.z) >> 4);
-            ((ServerWorld) world).getChunkManager().addTicket(ENDER_PEARL_TICKET, cp2, 2, cp2);
-            ((ServerWorld) world).getChunkManager().addTicket(ENDER_PEARL_TICKET, cp, 2, cp);
+            ((ServerWorld) world).getChunkManager().addTicket(ENDER_PEARL_TICKET, cp2, 3, cp2);
+            ((ServerWorld) world).getChunkManager().addTicket(ENDER_PEARL_TICKET, cp, 3, cp);
             /*
             //Log-Start
             if(TestCommand.tf) {
